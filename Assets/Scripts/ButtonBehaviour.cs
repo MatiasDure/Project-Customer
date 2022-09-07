@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonBehaviour : MonoBehaviour
+namespace Assets.Scripts
 {
+    public class ButtonBehaviour : MonoBehaviour
+    {
 
-    public void ExitGame() => Application.Quit();
+        public void ExitGame() => Application.Quit();
 
-    public void LoadScene(string newScene) => SceneManager.LoadScene(newScene);
+        public void LoadScene(string newScene) => SceneManager.LoadScene(newScene);
+    }
 }
