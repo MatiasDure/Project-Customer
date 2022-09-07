@@ -32,6 +32,7 @@ namespace Assets.Scripts
         bool CheckCoolDown() => cooldownSpawnTime <= 0;
         void SpawnRandomNpc()
         {
+            if (!IsSpawnable()) return;
             int randomIndex = Random.Range(0, spawnObject.Length);
             Spawn(spawnObject[randomIndex]);
         }
