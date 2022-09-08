@@ -19,7 +19,11 @@ namespace Assets.Scripts
 
         public void ExitGame() => Application.Quit();
 
-        public void LoadScene(string newScene) => SceneManager.LoadScene(newScene);
+        public void LoadScene(string newScene)
+        {
+            SceneManager.LoadScene(newScene);
+            OnPaused?.Invoke(this, false);
+        }
 
         public void PauseGame()
         {

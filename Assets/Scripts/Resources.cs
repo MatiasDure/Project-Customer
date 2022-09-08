@@ -16,6 +16,10 @@ namespace Assets.Scripts
         private int _moneyAmount;
         private int _foodAmount;
         private int _medicAmount;
+        private float foodTimer;
+        private float startingFoodTime;
+        private float medicTimer;
+        private float startingMedicTime;
 
         private static Resources _resource;
         public static Resources Resource { get => _resource;  }
@@ -25,15 +29,32 @@ namespace Assets.Scripts
 
         private void Start()
         {
-            _moneyAmount = 0;
+            _moneyAmount = 500;
             _foodAmount = 0;
             _medicAmount = 0;
+            foodTimer = startingFoodTime = 10;
+            medicTimer = startingMedicTime = 90;
         }
 
         private void Update()
         {
             if (GameManager.Manager.IsPaused) return;
             UpdateUiText();
+
+            //updating timers
+            foodTimer = UpdateTimer(foodTimer);
+            medicTimer = UpdateTimer(medicTimer);
+
+            if(TimeToUseResource(foodTimer))
+            {
+                EatFood(2);
+                foodTimer = startingFoodTime;
+            }
+            if (TimeToUseResource(medicTimer))
+            {
+                UseMedic(1);
+                medicTimer = startingMedicTime;
+            }
         }
 
         private void UpdateUiText()
@@ -51,21 +72,51 @@ namespace Assets.Scripts
 
         public void AddFood(int amount)
         {
-            if (GameManager.Manager.IsPaused) return;
+            int foodPrice = 10;
+            if (!EnoughMoney(amount, foodPrice) || GameManager.Manager.IsPaused) return;
             _foodAmount += amount;
+            SpendMoney(foodPrice * amount);
         }
+
+        private void EatFood(int amount)
+        {
+            _foodAmount -= amount;
+        }
+
+        private bool TimeToUseResource(float timeLeft)
+        {
+            return timeLeft <= 0;
+        }
+
+        private float UpdateTimer(float currentTime)
+        {
+            return currentTime -= Time.deltaTime;
+        }
+
 
         public void AddMedicine(int amount)
         {
-            if (GameManager.Manager.IsPaused) return;
+            int medicPrice = 30;
+            if (!EnoughMoney(amount, medicPrice) || GameManager.Manager.IsPaused) return;
             _medicAmount += amount;
+            SpendMoney(amount * medicPrice);
         }
 
-        private void CheckMoney(int amountToBuy, int priceOfObject)
+        private void UseMedic(int amount)
+        {
+            _medicAmount -= amount;
+        }
+
+        private bool EnoughMoney(int amountToBuy, int priceOfObject)
         {
             int leftOverMoney = _moneyAmount - amountToBuy * priceOfObject;
-            if (leftOverMoney < 0) return;
-            _moneyAmount left
+            return leftOverMoney > 0;
+            //_moneyAmount = leftOverMoney;
+        }
+
+        private void SpendMoney(int amountSpent)
+        {
+            _moneyAmount -= amountSpent;
         }
 
     }

@@ -10,6 +10,13 @@ namespace Assets.Scripts
         [SerializeField] protected GameObject[] spawnObject;
         [SerializeField] protected Vector3Int spawnPosition;
 
+        protected bool canSpawn;
+
+        private void Start()
+        {
+            canSpawn = false;
+        }
+
         protected void Spawn(GameObject objectToSpawn)
         {
             objectToSpawn.transform.position = spawnPosition;
