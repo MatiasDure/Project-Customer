@@ -19,6 +19,7 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
+            if (GameManager.Manager.IsPaused) return;
             DecreaseTimer();
             if(CheckCoolDown())
             {

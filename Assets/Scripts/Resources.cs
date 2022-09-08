@@ -30,18 +30,43 @@ namespace Assets.Scripts
             _medicAmount = 0;
         }
 
-        private void Update() => UpdateUiText();  
+        private void Update()
+        {
+            if (GameManager.Manager.IsPaused) return;
+            UpdateUiText();
+        }
 
         private void UpdateUiText()
         {
-            foodText.SetText(""+ _foodAmount);
+            foodText.SetText("" + _foodAmount);
             medicText.SetText("" + _medicAmount);
             moneyText.SetText("" + _moneyAmount);
-            Debug.Log(_foodAmount);
         }
-        public void AddMoney(int amount) => _moneyAmount += amount;
-        public void AddFood(int amount) => _foodAmount += amount;
-        public void AddMedicine(int amount) => _medicAmount += amount;
+
+        public void AddMoney(int amount)
+        {
+            if (GameManager.Manager.IsPaused) return;
+            _moneyAmount += amount;
+        }
+
+        public void AddFood(int amount)
+        {
+            if (GameManager.Manager.IsPaused) return;
+            _foodAmount += amount;
+        }
+
+        public void AddMedicine(int amount)
+        {
+            if (GameManager.Manager.IsPaused) return;
+            _medicAmount += amount;
+        }
+
+        private void CheckMoney(int amountToBuy, int priceOfObject)
+        {
+            int leftOverMoney = _moneyAmount - amountToBuy * priceOfObject;
+            if (leftOverMoney < 0) return;
+            _moneyAmount left
+        }
 
     }
 }

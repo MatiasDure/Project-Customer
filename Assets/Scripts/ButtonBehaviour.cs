@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace Assets.Scripts
 {
@@ -14,6 +15,8 @@ namespace Assets.Scripts
         [SerializeField] private GameObject storeCloseUI;
         [SerializeField] private GameObject storeOpenUI;
 
+        public static event EventHandler<bool> OnPaused;
+
         public void ExitGame() => Application.Quit();
 
         public void LoadScene(string newScene) => SceneManager.LoadScene(newScene);
@@ -22,12 +25,14 @@ namespace Assets.Scripts
         {
             notPausedUI.SetActive(false);
             pausedUI.SetActive(true);
+            OnPaused?.Invoke(this, true);
         }
 
         public void ResumeGame()
         {
             notPausedUI.SetActive(true);
             pausedUI.SetActive(false);
+            OnPaused?.Invoke(this, false);
         }
 
         public void OpenStore()
