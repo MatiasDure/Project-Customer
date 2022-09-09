@@ -23,7 +23,7 @@ public class WaypointsFollower : MonoBehaviour
         stopCurrentIndex = false;
         leaveBuilding = false;
         currentIndex = 0;
-        speed = Random.Range(0.01f,0.1f);
+        speed = Random.Range(0.008f,0.01f);
     }
 
     // Update is called once per frame

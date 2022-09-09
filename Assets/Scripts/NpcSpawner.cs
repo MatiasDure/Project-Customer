@@ -47,7 +47,7 @@ namespace Assets.Scripts
 
             //Passing the waypoints to npc we want to spawn
             npcWaypointScript.waypoints = this.waypoints;
-            Debug.Log(this.waypoints.Length);
+
             //spawning npc
             Spawn(spawnObject[randomIndex]);
             amountSpawned++;
