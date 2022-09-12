@@ -131,7 +131,8 @@ namespace Assets.Scripts
 
         private void DisplayFloatingTxt(string txt, Vector3 pos, Color c)
         {
-            GameObject floatingTxt = ObjectPooling.SharedInstance.GetPooledObject();
+            //GameObject floatingTxt = ObjectPooling.SharedInstance.GetPooledObject();
+            GameObject floatingTxt = FloatingTextObjectPooling.SharedFloatInstance.GetPooledObject();
 
             if (floatingTxt == null) return;
 
@@ -142,7 +143,6 @@ namespace Assets.Scripts
             floatingText[floatingTxt].color = c;
             floatingTxt.transform.position = pos;
             floatingTxt.SetActive(true);
-
         }
 
     }

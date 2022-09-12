@@ -5,33 +5,22 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class ObjectPooling : MonoBehaviour
+    public abstract class ObjectPooling : MonoBehaviour
     {
-        [SerializeField] private GameObject objectToPool;
-        [SerializeField] private int amountToPool;
-        [SerializeField] private Canvas canvas;
+        [SerializeField] protected GameObject objectToPool;
+        [SerializeField] protected int amountToPool;
+        [SerializeField] protected Vector3 startingPosition;
 
-
-        private List<GameObject> pooledObjects;
-        public static ObjectPooling SharedInstance { get; private set; }
-
-        private void Awake()
-        {
-            SharedInstance = this;
-        }
+        protected List<GameObject> pooledObjects;
 
         // Start is called before the first frame update
-        void Start()
+        protected void Start()
         {
             pooledObjects = new List<GameObject>();
-            GameObject temp;
 
             for (int i = 0; i < amountToPool; i++)
             {
-                temp = Instantiate(objectToPool);
-                temp.transform.SetParent(canvas.transform,false);
-                temp.SetActive(false);
-                pooledObjects.Add(temp);
+                InitializeObjects();
             }
         }
 
@@ -42,6 +31,15 @@ namespace Assets.Scripts
                 if (!pooledObjects[i].activeInHierarchy) return pooledObjects[i];
             }
             return null;
+        }
+
+        protected virtual GameObject InitializeObjects()
+        {
+            GameObject temp = Instantiate(objectToPool);
+            temp.transform.position = startingPosition;
+            temp.SetActive(false);
+            pooledObjects.Add(temp);
+            return temp;
         }
     }
 }

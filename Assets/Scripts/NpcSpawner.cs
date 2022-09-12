@@ -7,11 +7,11 @@ namespace Assets.Scripts
 {
     public class NpcSpawner : Spawner
     {
-        [SerializeField] private float cooldownSpawnTime;
-        [SerializeField] private GameObject[] waypoints;
+        [SerializeField] private float cooldownSpawnTime; //shared with animal van spawner
+        [SerializeField] private GameObject[] waypoints; //shared with animal van spawner
         [SerializeField] private int amountToSpawn;
 
-        int startingCooldownTime;
+        int startingCooldownTime; //shared with animal van spawner
         int amountSpawned;
         // Start is called before the first frame update
         void Start()
@@ -33,8 +33,13 @@ namespace Assets.Scripts
             }
         }
 
+        //shared with van spawner
         void DecreaseTimer() => cooldownSpawnTime -= Time.deltaTime;
+
+        //shared with van spawner
         void ResetTimer() => cooldownSpawnTime = startingCooldownTime;
+
+        //shared with van spawner
         bool CheckCoolDown() => cooldownSpawnTime <= 0;
         void SpawnRandomNpc()
         {
@@ -43,7 +48,7 @@ namespace Assets.Scripts
 
             //We are getting the WaypointsFollower script from the npc we want to spawn 
             WaypointsFollower npcWaypointScript = spawnObject[randomIndex].GetComponent<WaypointsFollower>();
-            npcWaypointScript.npc = spawnObject[randomIndex].GetComponent<Npc>();
+            //npcWaypointScript.npc = spawnObject[randomIndex].GetComponent<Npc>();
 
             //Passing the waypoints to npc we want to spawn
             npcWaypointScript.waypoints = this.waypoints;
