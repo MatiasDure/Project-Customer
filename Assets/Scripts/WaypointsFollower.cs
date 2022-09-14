@@ -7,19 +7,21 @@ using UnityEngine;
 [RequireComponent(typeof(Npc))]
 public class WaypointsFollower : MonoBehaviour
 {
-    [SerializeField] private int restAtWaypoint;
+    [SerializeField] protected bool waypointRest;
+    [SerializeField] protected int restAtWaypoint;
     public GameObject[] waypoints;
-    public Npc npc;
-    private float speed;
+    //public Npc npc;
+    protected float speed;
 
-    private int currentIndex;
+    protected int currentIndex;
 
     private bool stopCurrentIndex;
     private bool leaveBuilding;
+    protected bool reachedTheEnd;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    protected virtual void Start()
+    {    
         stopCurrentIndex = false;
         leaveBuilding = false;
         currentIndex = 0;
@@ -27,15 +29,15 @@ public class WaypointsFollower : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (GameManager.Manager.IsPaused) return;
         MoveTowardsWayPoint();
     }
     
-    private void MoveTowardsWayPoint()
+    protected virtual void MoveTowardsWayPoint()
     {
-        if(npc.HandedPet || npc.ImOut) LeaveBuilding();
+        //if(npc.HandedPet || npc.ImOut) LeaveBuilding(); //only for npc
 
         //Stop in front of desk
         if (stopCurrentIndex) return;
@@ -54,16 +56,23 @@ public class WaypointsFollower : MonoBehaviour
 
     private void UpdateWaypoint()
     {
-        if(!leaveBuilding)stopCurrentIndex = currentIndex == restAtWaypoint;
+        //rest if object is set to rest and given a specific waypoint to rest at
+        if(waypointRest && !leaveBuilding) stopCurrentIndex = currentIndex == restAtWaypoint;
         if (stopCurrentIndex && !leaveBuilding) return;
         currentIndex += 1;
-        if(currentIndex == waypoints.Length) Destroy(gameObject);
+        if (currentIndex == waypoints.Length) ResetWaypoint();
     }
 
     public void LeaveBuilding()
     {
         leaveBuilding = true;
         stopCurrentIndex = false;
+    }
+
+    private void ResetWaypoint()
+    {
+        reachedTheEnd = true;
+        currentIndex = 0;
     }
 
 }
