@@ -23,7 +23,10 @@ namespace Assets.Scripts
         void Start()
         {
             //we set a random starting cooldown time at the start given two input number to declare the range
-            startingCooldownTime = cooldownSpawnTime = Random.Range(rangeOfSpawnTime[0], rangeOfSpawnTime[1] + 1);
+            float assignedCooldownTime;
+            if (rangeOfSpawnTime.Length == 0) assignedCooldownTime = 4;
+            else assignedCooldownTime = Random.Range(rangeOfSpawnTime[0], rangeOfSpawnTime[1] + 1);
+            startingCooldownTime = cooldownSpawnTime = assignedCooldownTime;
         }
 
         // Update is called once per frame
@@ -56,7 +59,7 @@ namespace Assets.Scripts
                     obj = VanObjectPooling.SharedVanInstance.GetPooledObject();
                     break;
                 case NpcType.human:
-                    obj = VanObjectPooling.SharedVanInstance.GetPooledObject();
+                    obj = NpcObjectPooling.SharedNpcInstance.GetPooledObject();
                     break;
                 default:
                     obj = VanObjectPooling.SharedVanInstance.GetPooledObject();

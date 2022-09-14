@@ -32,11 +32,11 @@ public class VanWaypointFollower : WaypointsFollower
         if (animal == null) return;
 
         //Trying to get the animal component from the animal prefab
-        Animal animalScript = animal.GetComponent<Animal>();
+        AnimalPicker animalScript = animal.GetComponent<AnimalPicker>();
 
         //Setting the animal's type, position, and activating it
         animalScript.ChooseAnimalType();
-        animal.transform.position = gameObject.transform.position + animalScript.OffsetStartPosition +new Vector3(0,0,UnityEngine.Random.Range(-3,4)); 
+        animal.transform.position = gameObject.transform.position + animalScript.OffsetStartPosition + new Vector3(0,0,UnityEngine.Random.Range(-3,4)); 
         animal.SetActive(true);
     }
 }

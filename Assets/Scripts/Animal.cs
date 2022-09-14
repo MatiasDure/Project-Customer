@@ -8,19 +8,21 @@ namespace Assets.Scripts
     [RequireComponent(typeof(Renderer))] 
     public class Animal : MonoBehaviour
     {
-        [SerializeField] private int foodConsume;
-        [SerializeField] private int medicConsume;
-        [SerializeField] private AnimalType _type;
-        [SerializeField] private Material _mat;
-        [SerializeField] private Material[] materials;
-        [SerializeField] private Renderer render;
+        [SerializeField] private int _foodConsume;
+        [SerializeField] private int _medicConsume;
+        [SerializeField] private Material _mat; //might need to delete this
         [SerializeField] private Vector3 _offsetStartPosition;
+        [SerializeField] private Renderer _render;
+        public AnimalType _type;
 
-        private bool _selected;
+        public bool _selected;
         public bool Selected { get => _selected; }
         public Material Mat { get => _mat; }
 
+        public Renderer Render { get => _render; }
         public AnimalType Type { get => _type; }
+        public int FoodConsume { get => _foodConsume; }
+        public int MedicConsume { get => _medicConsume; }
 
         public Vector3 OffsetStartPosition { get => _offsetStartPosition; }
 
@@ -30,16 +32,15 @@ namespace Assets.Scripts
             Dog
         }
 
+        private void Awake()
+        {
+            if (_render == null) _render = gameObject.GetComponent<Renderer>();
+        }
+
         // Start is called before the first frame update
         void Start()
         {
             _selected = false; 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-      
         }
 
         public void Select()
@@ -47,30 +48,19 @@ namespace Assets.Scripts
             _selected = !_selected;
         }
 
-        public void FoundAMatch() => Destroy(gameObject);
-
-        private void MatchWithMaterial()
+        public void FoundAMatch()
         {
-            switch (_type)
-            {
-                case AnimalType.Cat:
-                    _mat = materials[0];
-                    break;
-                case AnimalType.Dog:
-                    _mat = materials[1];
-                    break;
-                default:
-                    _mat = materials[1];
-                    break;
-            }
-            render.material = _mat;
+            _selected = false;
+            gameObject.SetActive(false);
         }
 
-        public void ChooseAnimalType()
+        public void AssignChosenValues(Animal animalToCopy)
         {
-            int ran = Random.Range(0, 2);
-            _type = ran == 0 ? AnimalType.Cat : AnimalType.Dog;
-            MatchWithMaterial();
+            _foodConsume = animalToCopy.FoodConsume;
+            _medicConsume = animalToCopy.MedicConsume;
+            _type = animalToCopy.Type;
+            _mat = animalToCopy.Mat;
+            _render.material = _mat;
         }
     }
 }

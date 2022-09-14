@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4148258175956692234}
   - component: {fileID: 4148258175956692237}
   - component: {fileID: 4148258175956692236}
+  - component: {fileID: -6432446103339511130}
   m_Layer: 0
   m_Name: Animal
   m_TagString: Animal
@@ -110,12 +111,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc32721a8cd65d4287919a92674728a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodConsume: 0
-  medicConsume: 0
-  _type: 0
+  _foodConsume: 0
+  _medicConsume: 0
   _mat: {fileID: 0}
-  materials:
-  - {fileID: 2100000, guid: 4190a25459b8e944d90b063fe4c31d76, type: 2}
-  - {fileID: 2100000, guid: fe0b5b707b5f02f4a837bebd3b140f1c, type: 2}
-  render: {fileID: 4148258175956692234}
+  _offsetStartPosition: {x: -1.5, y: 0, z: 0}
+  _render: {fileID: 4148258175956692234}
+  _type: 0
+  _selected: 0
+--- !u!114 &-6432446103339511130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148258175956692239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67891bbcfabee84db7f132bd9939c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachedAnimalScript: {fileID: 4148258175956692236}
+  animals:
+  - {fileID: 4614473080431206067, guid: c7b596d3730865341ac9113bcd53fe62, type: 3}
+  - {fileID: 2438183989656526200, guid: f568d6f751d47e24c82aad12028e660a, type: 3}
   _offsetStartPosition: {x: -1.5, y: 0, z: 0}

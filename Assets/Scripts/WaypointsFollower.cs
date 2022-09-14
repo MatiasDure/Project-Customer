@@ -16,12 +16,13 @@ public class WaypointsFollower : MonoBehaviour
     protected int currentIndex;
 
     private bool stopCurrentIndex;
-    private bool leaveBuilding;
+    protected bool leaveBuilding;
     protected bool reachedTheEnd;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {    
+        reachedTheEnd = false;
         stopCurrentIndex = false;
         leaveBuilding = false;
         currentIndex = 0;
@@ -37,10 +38,7 @@ public class WaypointsFollower : MonoBehaviour
     
     protected virtual void MoveTowardsWayPoint()
     {
-        //if(npc.HandedPet || npc.ImOut) LeaveBuilding(); //only for npc
-
-        //Stop in front of desk
-        if (stopCurrentIndex) return;
+        if (stopCurrentIndex || reachedTheEnd) return;
 
         //continue moving to next waypoint
         Vector3 distance = waypoints[currentIndex].transform.position - gameObject.transform.position;
@@ -57,7 +55,7 @@ public class WaypointsFollower : MonoBehaviour
     private void UpdateWaypoint()
     {
         //rest if object is set to rest and given a specific waypoint to rest at
-        if(waypointRest && !leaveBuilding) stopCurrentIndex = currentIndex == restAtWaypoint;
+        if(waypointRest) stopCurrentIndex = currentIndex == restAtWaypoint;
         if (stopCurrentIndex && !leaveBuilding) return;
         currentIndex += 1;
         if (currentIndex == waypoints.Length) ResetWaypoint();

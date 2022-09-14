@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public abstract class ObjectPooling : MonoBehaviour
+    public class ObjectPooling : MonoBehaviour
     {
         [SerializeField] protected GameObject objectToPool;
         [SerializeField] protected int amountToPool;

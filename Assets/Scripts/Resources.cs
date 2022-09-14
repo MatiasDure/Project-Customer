@@ -32,6 +32,11 @@ namespace Assets.Scripts
         public int Medicine { get => _medicAmount; }
 
 
+        private void Awake()
+        {
+            _resource = this;
+        }
+
         private void Start()
         {
             floatingText = new Dictionary<GameObject, TextMeshProUGUI>();
@@ -74,6 +79,7 @@ namespace Assets.Scripts
         public void AddMoney(int amount)
         {
             if (GameManager.Manager.IsPaused) return;
+            DisplayFloatingTxt("+" + amount,moneyText.transform.position + offset,Color.green);
             _moneyAmount += amount;
         }
 

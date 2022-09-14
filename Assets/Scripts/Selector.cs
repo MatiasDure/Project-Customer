@@ -47,7 +47,7 @@ public class Selector : MonoBehaviour
             {
                 //Returning the previously selected animal to its original color
                 Animal previousSelectedAnimal = RetrieveAnimalScript(animalSelected);
-                Renderer previousSelectedRenderer = RetrieveRendererScript(animalSelected);
+                Renderer previousSelectedRenderer = previousSelectedAnimal.Render;
                 previousSelectedRenderer.material.color = previousSelectedAnimal.Mat.color;
                 previousSelectedAnimal.Select();
             }
@@ -57,7 +57,7 @@ public class Selector : MonoBehaviour
 
             //Retrieving scripts from new animal selected
             Animal selectedAnimal = RetrieveAnimalScript(animalSelected);
-            Renderer renderer = RetrieveRendererScript(animalSelected);
+            Renderer renderer = selectedAnimal.Render;
 
             //Retrieving the animal type
             animalTypeSelected = selectedAnimal.Type; 
@@ -111,10 +111,16 @@ public class Selector : MonoBehaviour
             {
                 RetrieveNpcScript(npcSelected).HandPet();
                 RetrieveAnimalScript(animalSelected).FoundAMatch();
+                ResetAfterMatch();
             }
         }
     }
 
+    private void ResetAfterMatch()
+    {
+        npcSelected = null;
+        animalSelected = null;
+    }
     private Animal RetrieveAnimalScript(GameObject animal) => animal.GetComponent<Animal>();
     private Npc RetrieveNpcScript(GameObject npc) => npc.GetComponent<Npc>();
     private Renderer RetrieveRendererScript(GameObject renderer) => renderer.GetComponent<Renderer>();
