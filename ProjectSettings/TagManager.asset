@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Animal
   - Npc
+  - Info
   layers:
   - Default
   - TransparentFX

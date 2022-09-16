@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System.ComponentModel.Design;
 
 public class CameraSwitch : MonoBehaviour
 {
@@ -10,6 +11,15 @@ public class CameraSwitch : MonoBehaviour
     
     int currentIndex;
     int min, max;
+
+    private CinemachineVirtualCamera activeCam;
+
+    public static CameraSwitch Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -33,8 +43,15 @@ public class CameraSwitch : MonoBehaviour
         SettingVirtualCam();
     }
 
-    void SettingVirtualCam() => virtualCameras[currentIndex].Priority = 1;
+    void SettingVirtualCam()
+    {
+        virtualCameras[currentIndex].Priority = 1;
+        activeCam = virtualCameras[currentIndex];
+    }
 
     void ResetCamPriority() => virtualCameras[currentIndex].Priority = 0;
+
+    public Transform GetCameraActive() => virtualCameras[currentIndex].transform;
+
 
 }

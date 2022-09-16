@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
-[RequireComponent(typeof(Npc))]
 public class WaypointsFollower : MonoBehaviour
 {
     [SerializeField] protected bool waypointRest;
     [SerializeField] protected int restAtWaypoint;
     public GameObject[] waypoints;
-    //public Npc npc;
     protected float speed;
 
     protected int currentIndex;

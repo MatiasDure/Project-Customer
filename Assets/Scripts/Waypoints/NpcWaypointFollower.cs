@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    [RequireComponent(typeof(Npc))]
     public class NpcWaypointFollower : WaypointsFollower
     {
         public Npc npc;

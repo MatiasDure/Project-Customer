@@ -11,6 +11,9 @@ public class Selector : MonoBehaviour
     Animal.AnimalType npcAnimalPreference;
     Animal.AnimalType animalTypeSelected;
 
+    private Dictionary<GameObject, Animal> animals;
+    private Dictionary<GameObject, Npc> npcs;
+
     private void Start()
     {
         animalSelected = null;
@@ -43,6 +46,8 @@ public class Selector : MonoBehaviour
         //checking if the user pressed on a different animal
         if(animalSelected != selected)
         {
+            Animal selectedAnimal = RetrieveAnimalScript(selected);
+            if (!selectedAnimal.Taken) return; 
             if(animalSelected != null)
             {
                 //Returning the previously selected animal to its original color
@@ -56,7 +61,10 @@ public class Selector : MonoBehaviour
             animalSelected = selected;
 
             //Retrieving scripts from new animal selected
-            Animal selectedAnimal = RetrieveAnimalScript(animalSelected);
+
+            //Avoid Selecting an animal in the curb
+
+
             Renderer renderer = selectedAnimal.Render;
 
             //Retrieving the animal type
@@ -80,7 +88,7 @@ public class Selector : MonoBehaviour
             {
                 //Returning the previously selected npc to its original color
                 Npc previousSelectedNpc = RetrieveNpcScript(npcSelected);
-                Renderer previousSelectedRenderer = RetrieveRendererScript(npcSelected);
+                Renderer previousSelectedRenderer = previousSelectedNpc.Render;
                 previousSelectedRenderer.material.color = previousSelectedNpc.Mat.color;
                 previousSelectedNpc.Select();
             }
@@ -90,7 +98,7 @@ public class Selector : MonoBehaviour
 
             //Retrieving scripts from new animal selected
             Npc selectedNpc = RetrieveNpcScript(npcSelected);
-            Renderer renderer = RetrieveRendererScript(npcSelected);
+            Renderer renderer = selectedNpc.Render; 
 
             //Retrieving the animal preference of the npc
             npcAnimalPreference = selectedNpc.Preference;
@@ -123,7 +131,5 @@ public class Selector : MonoBehaviour
     }
     private Animal RetrieveAnimalScript(GameObject animal) => animal.GetComponent<Animal>();
     private Npc RetrieveNpcScript(GameObject npc) => npc.GetComponent<Npc>();
-    private Renderer RetrieveRendererScript(GameObject renderer) => renderer.GetComponent<Renderer>();
-
 
 }

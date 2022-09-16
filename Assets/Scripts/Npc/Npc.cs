@@ -9,10 +9,15 @@ namespace Assets.Scripts
     {
         [SerializeField] private Material _mat;
         [SerializeField] private Animal.AnimalType _preference;
-        private float waitingTime;
+        [SerializeField] private Renderer _render;
+        [SerializeField] private GameObject display;
+        [SerializeField] private NpcInfo npcInfo;
+        private float _waitingTime;
 
+        public float WaitingTime { get => _waitingTime; }
         public Animal.AnimalType Preference { get => _preference; }
         public Material Mat { get => _mat; }
+        public Renderer Render { get => _render; }
         public bool HandedPet { get => _handedPet; }
         public bool ImOut { get => _imOut; }
 
@@ -20,6 +25,13 @@ namespace Assets.Scripts
         bool _handedPet;
         bool selected;
 
+        private void Awake()
+        {
+            if (_mat == null) _mat = GetComponent<Material>();
+            if (_render == null) _render = GetComponent<Renderer>();
+            if (npcInfo == null) npcInfo = GetComponent<NpcInfo>();
+            if (display == null) Debug.LogWarning("You need to add the display to the NPC script!");
+        }
         // Start is called before the first frame update
         void Start()
         {
@@ -34,9 +46,13 @@ namespace Assets.Scripts
             else UpdateTimer();
         }
 
-        private bool TimeLeft() => waitingTime > 0;
+        private bool TimeLeft() => _waitingTime > 0;
 
-        private void UpdateTimer() => waitingTime -= Time.deltaTime;
+        private void UpdateTimer()
+        {
+            _waitingTime -= Time.deltaTime;
+            if(_waitingTime <= 0) _waitingTime = 0;
+        }
 
         public void HandPet() => _handedPet = true;
 
@@ -59,15 +75,17 @@ namespace Assets.Scripts
             }
         }
 
-        private void ResetWaitingTime() => waitingTime = UnityEngine.Random.Range(20.0f, 90.0f);
+        private void ResetWaitingTime() => _waitingTime = UnityEngine.Random.Range(20.0f, 90.0f);
 
         public void ResetNpc()
         {
             selected = false;
             _handedPet = false;
             _imOut = false;
+            if(display != null) display.SetActive(false);
             ResetWaitingTime();
             PickingRandomPreference();
+            npcInfo.ResetInfoText();
         }
 
     }

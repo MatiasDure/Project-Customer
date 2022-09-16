@@ -18,10 +18,6 @@ namespace Assets.Scripts
         private int _moneyAmount;
         private int _foodAmount;
         private int _medicAmount;
-        private float foodTimer;
-        private float startingFoodTime;
-        private float medicTimer;
-        private float startingMedicTime;
 
         private Vector3 offset;
 
@@ -44,29 +40,12 @@ namespace Assets.Scripts
             _moneyAmount = 500;
             _foodAmount = 0;
             _medicAmount = 0;
-            foodTimer = startingFoodTime = 10;
-            medicTimer = startingMedicTime = 90;
         }
 
         private void Update()
         {
             if (GameManager.Manager.IsPaused) return;
             UpdateUiText();
-
-            //updating timers
-            foodTimer = UpdateTimer(foodTimer);
-            medicTimer = UpdateTimer(medicTimer);
-
-            if(TimeToUseResource(foodTimer))
-            {
-                EatFood(2);
-                foodTimer = startingFoodTime;
-            }
-            if (TimeToUseResource(medicTimer))
-            {
-                UseMedic(1);
-                medicTimer = startingMedicTime;
-            }
         }
 
         private void UpdateUiText()
@@ -101,27 +80,18 @@ namespace Assets.Scripts
             SpendMoney(amount * medicPrice);
         }
 
-        private void EatFood(int amount)
+        public void EatFood(int amount)
         {
-            DisplayFloatingTxt("" + -amount, foodText.transform.position + offset, Color.red);
+            if (!(_foodAmount >= amount)) return;
+            DisplayFloatingTxt("-" + amount, foodText.transform.position + offset, Color.red);
             _foodAmount -= amount;
         }
-        private void UseMedic(int amount)
+        public void UseMedic(int amount)
         {
-            DisplayFloatingTxt("" + -amount, medicText.transform.position + offset, Color.red);
+            if (!(_medicAmount >= amount)) return;
+            DisplayFloatingTxt("-" + amount, medicText.transform.position + offset, Color.red);
             _medicAmount -= amount;
         }
-
-        private bool TimeToUseResource(float timeLeft)
-        {
-            return timeLeft <= 0;
-        }
-
-        private float UpdateTimer(float currentTime)
-        {
-            return currentTime -= Time.deltaTime;
-        }
-
 
         private bool EnoughMoney(int amountToBuy, int priceOfObject)
         {
@@ -129,7 +99,7 @@ namespace Assets.Scripts
             return leftOverMoney > 0;
         }
 
-        private void SpendMoney(int amountSpent)
+        public void SpendMoney(int amountSpent)
         {
             DisplayFloatingTxt("" + -amountSpent,moneyText.transform.position + offset, Color.red);
             _moneyAmount -= amountSpent;
