@@ -8,6 +8,8 @@ public class WaypointsFollower : MonoBehaviour
 {
     [SerializeField] protected bool waypointRest;
     [SerializeField] protected int restAtWaypoint;
+    [SerializeField] protected float[] rangeOfSpeed;
+
     public GameObject[] waypoints;
     protected float speed;
 
@@ -24,7 +26,9 @@ public class WaypointsFollower : MonoBehaviour
         stopCurrentIndex = false;
         leaveBuilding = false;
         currentIndex = 0;
-        speed = Random.Range(0.008f,0.01f);
+        if(rangeOfSpeed.Length < 2) speed = Random.Range(8f,1f);
+        else speed = Random.Range(rangeOfSpeed[0], rangeOfSpeed[1]);
+        Debug.Log(gameObject.name + ": "+speed);
     }
 
     // Update is called once per frame
@@ -43,7 +47,7 @@ public class WaypointsFollower : MonoBehaviour
         if (ReachedWaypoint(distance.magnitude)) UpdateWaypoint();
         else
         {
-            Vector3 velocity = distance.normalized * speed;
+            Vector3 velocity = distance.normalized * speed * Time.deltaTime;
             gameObject.transform.position += velocity;
         }
     }

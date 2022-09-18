@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System.ComponentModel.Design;
+using Assets.Scripts;
 
 public class CameraSwitch : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class CameraSwitch : MonoBehaviour
 
     public void LeftCam()
     {
+        if (GameManager.Manager.IsPaused) return;
         ResetCamPriority();
         currentIndex = currentIndex == 0 ? max : currentIndex - 1;
         SettingVirtualCam();
@@ -38,6 +40,7 @@ public class CameraSwitch : MonoBehaviour
 
     public void RightCam()
     {
+        if (GameManager.Manager.IsPaused) return;
         ResetCamPriority();
         currentIndex = currentIndex == max ? min : currentIndex + 1;
         SettingVirtualCam();

@@ -9,7 +9,7 @@ namespace Assets.Scripts
     {
         [SerializeField] protected GameObject objectToPool;
         [SerializeField] protected int amountToPool;
-        [SerializeField] protected Vector3 startingPosition;
+        //[SerializeField] protected Vector3 startingPosition;
 
         protected List<GameObject> pooledObjects;
 
@@ -36,7 +36,7 @@ namespace Assets.Scripts
         protected virtual GameObject InitializeObjects()
         {
             GameObject temp = Instantiate(objectToPool);
-            temp.transform.position = startingPosition;
+            //temp.transform.position = startingPosition;
             temp.SetActive(false);
             pooledObjects.Add(temp);
             return temp;

@@ -64,7 +64,6 @@ public class Selector : MonoBehaviour
 
             //Avoid Selecting an animal in the curb
 
-
             Renderer renderer = selectedAnimal.Render;
 
             //Retrieving the animal type
@@ -117,8 +116,17 @@ public class Selector : MonoBehaviour
         {
             if (npcAnimalPreference == animalTypeSelected)
             {
-                RetrieveNpcScript(npcSelected).HandPet();
-                RetrieveAnimalScript(animalSelected).FoundAMatch();
+                Npc npcScript = RetrieveNpcScript(npcSelected);
+
+                //Checking whether the npc is already leaving the animal shelter
+                if (npcScript.HandedPet || npcScript.ImOut)
+                {
+                    Debug.Log("npc is leaving the store");
+                    npcSelected = null;
+                    return;
+                }
+                npcScript.HandPet();
+                RetrieveAnimalScript(animalSelected).RemoveAnimal();
                 ResetAfterMatch();
             }
         }

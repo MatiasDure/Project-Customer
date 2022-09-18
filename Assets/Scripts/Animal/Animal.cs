@@ -12,10 +12,12 @@ namespace Assets.Scripts
         [SerializeField] private int _medicConsume;
         [SerializeField] private GameObject curbDisplay;
         [SerializeField] private AnimalInfo animalInfo;
-        [SerializeField] private Material _mat; //might need to delete this
+        [SerializeField] private Material _mat; 
         [SerializeField] private Vector3 _offsetStartPosition;
         [SerializeField] private Renderer _render;
         [SerializeField] private int[] rangeToEat;
+        [SerializeField] private int healthPoints;
+
         public AnimalType _type;
 
         public bool _selected;
@@ -27,7 +29,11 @@ namespace Assets.Scripts
 
         private float timer;
         private float originalTimer;
+        private int hp;
 
+        private Cage _currentCage;
+
+        public Cage CurrentCage { get => _currentCage; }
         public AnimalInfo AnimalInf { get => animalInfo; }
         public bool Vaccinated { get => _vaccinated; }
         public Material Mat { get => _mat; }
@@ -69,6 +75,8 @@ namespace Assets.Scripts
                 ResetTimer();
             }
             else UpdateTimer();
+
+            if (hp <= 0) RemoveAnimal();
         }
 
         public void Select()
@@ -76,8 +84,9 @@ namespace Assets.Scripts
             _selected = !_selected;
         }
 
-        public void FoundAMatch()
+        public void RemoveAnimal()
         {
+            if(_currentCage != null) _currentCage.RemoveAnimal();
             gameObject.SetActive(false);
         }
 
@@ -91,19 +100,35 @@ namespace Assets.Scripts
             ResetValues();
         }
 
-        public void TakeIn()
+        public void TakeIn(Cage cageToPutIn)
         {
+            _currentCage = cageToPutIn;
             _vaccinated = true;
             _taken = true;
         }
 
-        private void Consume() => Resources.Resource.EatFood(_foodConsume);
+        private void Consume()
+        {
+            if (_taken && Resources.Resource.Food >= _foodConsume)
+            {
+                UnityEngine.Debug.Log(_foodConsume);
+                Resources.Resource.EatFood(_foodConsume);
+            }
+            else
+            {
+                hp--;
+                UnityEngine.Debug.Log(hp);
+            }
+        }
 
         public void ResetValues()
         {
             _selected = false;
+            _currentCage = null;
             _taken = false;
+            hp = healthPoints;
             _vaccinated = false;
+            _currentCage = null;
             if (curbDisplay != null) curbDisplay.SetActive(true);
             //timer to consume food
             if (rangeToEat.Length > 1) timer = Random.Range(rangeToEat[0], rangeToEat[1] + 1);

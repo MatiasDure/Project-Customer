@@ -1113,6 +1113,11 @@ PrefabInstance:
       propertyPath: infoDisplay
       value: 
       objectReference: {fileID: 8836048504581225445}
+    - target: {fileID: 4148258175956692236, guid: 5abe98101e8129a4cbeb9942c69e8883,
+        type: 3}
+      propertyPath: healthPoints
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4148258175956692239, guid: 5abe98101e8129a4cbeb9942c69e8883,
         type: 3}
       propertyPath: m_Name

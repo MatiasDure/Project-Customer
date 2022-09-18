@@ -41,7 +41,7 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            if (!_imOut && !TimeLeft() && !_handedPet) _imOut = true;
+            if (!_imOut && !TimeLeft()) _imOut = true;
 
             else UpdateTimer();
         }
@@ -50,8 +50,12 @@ namespace Assets.Scripts
 
         private void UpdateTimer()
         {
+            if(_waitingTime <= 0 || _handedPet)
+            {
+                _waitingTime = 0;
+                return;
+            }
             _waitingTime -= Time.deltaTime;
-            if(_waitingTime <= 0) _waitingTime = 0;
         }
 
         public void HandPet() => _handedPet = true;
@@ -82,6 +86,7 @@ namespace Assets.Scripts
             selected = false;
             _handedPet = false;
             _imOut = false;
+            _render.material = _mat;
             if(display != null) display.SetActive(false);
             ResetWaitingTime();
             PickingRandomPreference();

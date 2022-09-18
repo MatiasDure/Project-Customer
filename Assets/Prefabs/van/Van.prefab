@@ -112,4 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypointRest: 0
   restAtWaypoint: 0
+  rangeOfSpeed:
+  - 6
+  - 8
   waypoints: []

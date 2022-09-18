@@ -12,6 +12,8 @@ namespace Assets.Scripts
         [SerializeField] private TextMeshProUGUI foodText;
         [SerializeField] private TextMeshProUGUI medicText;
         [SerializeField] private TextMeshProUGUI moneyText;
+        [SerializeField] private int _vaccineCost;
+        [SerializeField] private int _foodCost;
 
         Dictionary<GameObject,TextMeshProUGUI> floatingText;
 
@@ -26,6 +28,8 @@ namespace Assets.Scripts
         public int Money { get => _moneyAmount; }
         public int Food { get => _foodAmount; }
         public int Medicine { get => _medicAmount; }
+        public int VaccineCost { get => _vaccineCost; }
+        public int FoodCost { get => _foodCost; }
 
 
         private void Awake()

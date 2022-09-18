@@ -7,12 +7,6 @@ using UnityEngine;
 public class VanWaypointFollower : WaypointsFollower
 {
 
-    protected override void Start()
-    {
-        base.Start();
-        speed = UnityEngine.Random.Range(0.05f, 0.1f);
-    }
-
     protected override void Update()
     {
         base.Update();
@@ -23,7 +17,7 @@ public class VanWaypointFollower : WaypointsFollower
     {
         //spawn animals on the curb
 
-        //Reset and deactivate van waypoint  
+        //Reset and deactivate van
         reachedTheEnd = false;
         gameObject.SetActive(false);
 

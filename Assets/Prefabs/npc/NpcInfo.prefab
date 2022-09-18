@@ -718,5 +718,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypointRest: 1
   restAtWaypoint: 2
+  rangeOfSpeed:
+  - 1
+  - 3
   waypoints: []
   npc: {fileID: 6417163343216236873}
