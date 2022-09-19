@@ -66,22 +66,18 @@ namespace Assets.Scripts
             _moneyAmount += amount;
         }
 
-        public void AddFood(int amount)
+        public void AddFood(int amount, int foodPrice)
         {
-            int foodPrice = 10;
-            if (!EnoughMoney(amount, foodPrice) || GameManager.Manager.IsPaused) return;
+            if (GameManager.Manager.IsPaused) return;
             DisplayFloatingTxt("+" + amount, foodText.transform.position + offset, Color.green);
             _foodAmount += amount;
-            SpendMoney(foodPrice * amount);
         }
 
-        public void AddMedicine(int amount)
+        public void AddMedicine(int amount, int medicPrice)
         {
-            int medicPrice = 30;
-            if (!EnoughMoney(amount, medicPrice) || GameManager.Manager.IsPaused) return;
+            if (GameManager.Manager.IsPaused) return;
             DisplayFloatingTxt("+" + amount, medicText.transform.position + offset, Color.green);
             _medicAmount += amount;
-            SpendMoney(amount * medicPrice);
         }
 
         public void EatFood(int amount)
@@ -100,7 +96,7 @@ namespace Assets.Scripts
         private bool EnoughMoney(int amountToBuy, int priceOfObject)
         {
             int leftOverMoney = _moneyAmount - amountToBuy * priceOfObject;
-            return leftOverMoney > 0;
+            return leftOverMoney >= 0;
         }
 
         public void SpendMoney(int amountSpent)
