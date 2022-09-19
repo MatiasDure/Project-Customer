@@ -28,7 +28,7 @@ public class WaypointsFollower : MonoBehaviour
         currentIndex = 0;
         if(rangeOfSpeed.Length < 2) speed = Random.Range(8f,1f);
         else speed = Random.Range(rangeOfSpeed[0], rangeOfSpeed[1]);
-        Debug.Log(gameObject.name + ": "+speed);
+        //Debug.Log(gameObject.name + ": "+speed);
     }
 
     // Update is called once per frame

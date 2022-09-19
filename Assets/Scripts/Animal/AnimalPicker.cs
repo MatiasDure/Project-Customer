@@ -18,11 +18,6 @@ namespace Assets.Scripts
             if(attachedAnimalScript == null) attachedAnimalScript = GetComponent<Animal>();
         }
 
-        private void Start()
-        {
-            ChooseAnimalType();
-        }
-
         public void ChooseAnimalType()
         {
             if (animals.Length == 0) return;

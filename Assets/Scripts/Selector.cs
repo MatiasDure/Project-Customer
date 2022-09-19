@@ -117,6 +117,7 @@ public class Selector : MonoBehaviour
             if (npcAnimalPreference == animalTypeSelected)
             {
                 Npc npcScript = RetrieveNpcScript(npcSelected);
+                Animal animalScript = RetrieveAnimalScript(animalSelected);
 
                 //Checking whether the npc is already leaving the animal shelter
                 if (npcScript.HandedPet || npcScript.ImOut)
@@ -126,7 +127,8 @@ public class Selector : MonoBehaviour
                     return;
                 }
                 npcScript.HandPet();
-                RetrieveAnimalScript(animalSelected).RemoveAnimal();
+                animalScript.RemoveAnimal();
+                animalScript.RemoveFromDropPoint();
                 ResetAfterMatch();
             }
         }

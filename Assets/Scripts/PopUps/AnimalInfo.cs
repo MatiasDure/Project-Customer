@@ -11,8 +11,8 @@ namespace Assets.Scripts
         [SerializeField] private Animal animal;
 
         private int amountFood;
-        private int amountMedic;
-        private bool vaccinated;
+        private int timeToFeed;
+        private int health;
 
         public GameObject InfoDisplay { get => display; }
 
@@ -29,15 +29,21 @@ namespace Assets.Scripts
 
         protected override void UpdateText()
         {
-            textField.text = string.Format("Animal: {0}\nFood: {1}\nMed: {2}\nVaccinated: {3}",animalType,amountFood,amountMedic,vaccinated);
+            UpdateValues();
+            textField.text = string.Format("Animal: {0}\nFood: {1}\nNext meal in: {2}\nHealth: {3}",animalType,amountFood,timeToFeed,health);
+        }
+
+        private void UpdateValues()
+        {
+            timeToFeed = (int)animal.Timer;
+            health = animal.Hp;
         }
 
         public void ResetInfoText()
         {
             amountFood = animal.FoodConsume;
-            amountMedic = animal.MedicConsume;
             animalType = animal.Type;
-            vaccinated = animal.Vaccinated;
+            health = animal.Hp;
         }
 
     }

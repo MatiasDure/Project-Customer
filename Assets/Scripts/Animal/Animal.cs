@@ -17,6 +17,7 @@ namespace Assets.Scripts
         [SerializeField] private Renderer _render;
         [SerializeField] private int[] rangeToEat;
         [SerializeField] private int healthPoints;
+        [SerializeField] private AnimalCurb buttonsLayout;
 
         public AnimalType _type;
 
@@ -33,6 +34,8 @@ namespace Assets.Scripts
 
         private Cage _currentCage;
 
+        public float Timer { get => timer; }
+        public int Hp { get => hp; }
         public Cage CurrentCage { get => _currentCage; }
         public AnimalInfo AnimalInf { get => animalInfo; }
         public bool Vaccinated { get => _vaccinated; }
@@ -56,14 +59,13 @@ namespace Assets.Scripts
         {
             if (_render == null) _render = gameObject.GetComponent<Renderer>();
             if (animalInfo == null) animalInfo = gameObject.GetComponentInChildren<AnimalInfo>();
+            if (buttonsLayout == null) buttonsLayout = gameObject.GetComponentInChildren<AnimalCurb>();
             if (curbDisplay == null) UnityEngine.Debug.LogWarning("You need to add the curbDisplay to the Animal Script!");
         }
-
 
         // Start is called before the first frame update
         void Start()
         {
-            ResetValues();
         }
 
         private void Update()
@@ -87,6 +89,7 @@ namespace Assets.Scripts
         public void RemoveAnimal()
         {
             if(_currentCage != null) _currentCage.RemoveAnimal();
+            buttonsLayout.ResetButtons();
             gameObject.SetActive(false);
         }
 
@@ -102,33 +105,28 @@ namespace Assets.Scripts
 
         public void TakeIn(Cage cageToPutIn)
         {
-            _currentCage = cageToPutIn;
+            PlaceInCage(cageToPutIn);
             _vaccinated = true;
             _taken = true;
         }
+
+        public void PlaceInCage(Cage cageToPutIn) => _currentCage = cageToPutIn;
 
         private void Consume()
         {
             if (_taken && Resources.Resource.Food >= _foodConsume)
             {
-                UnityEngine.Debug.Log(_foodConsume);
                 Resources.Resource.EatFood(_foodConsume);
             }
-            else
-            {
-                hp--;
-                UnityEngine.Debug.Log(hp);
-            }
+            else hp--;
         }
 
         public void ResetValues()
         {
             _selected = false;
-            _currentCage = null;
             _taken = false;
             hp = healthPoints;
             _vaccinated = false;
-            _currentCage = null;
             if (curbDisplay != null) curbDisplay.SetActive(true);
             //timer to consume food
             if (rangeToEat.Length > 1) timer = Random.Range(rangeToEat[0], rangeToEat[1] + 1);
@@ -140,6 +138,8 @@ namespace Assets.Scripts
                 animalInfo.ResetInfoText();
             }
         }
+
+        public void RemoveFromDropPoint() => _currentCage = null;
 
         private bool TimeToConsume() => timer <= 0;
 

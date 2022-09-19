@@ -10,23 +10,17 @@ namespace Assets.Scripts
     {
         [SerializeField] Cage[] cagesInShelter;
 
-        public static Cages Instance { get; private set; }
+        //public static Cages Instance { get; private set; }
 
         private void Awake()
         {
-            if (Instance == null) Instance = this;
+            //if (Instance == null) Instance = this;
         }
 
         // Start is called before the first frame update
         void Start()
         {
             if (cagesInShelter.Length == 0) Debug.LogWarning("You should add each cage into the Cages Script!");
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         public Cage FindAvailableCage()

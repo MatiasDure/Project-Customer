@@ -8,12 +8,22 @@ namespace Assets.Scripts
     {
         [SerializeField] Animal animal;
         [SerializeField] GameObject display;
+        [SerializeField] GameObject euthanizeButton;
+        [SerializeField] GameObject takeInButton;
+
         private int emptyVaccine = 0;   
 
         public void EuthanizeButton()
         {
             animal.gameObject.SetActive(false);
-            animal.ResetValues();
+            //if animal has been taken, remove from the cage after euthanize
+            if (animal.CurrentCage != null) animal.CurrentCage.RemoveAnimal();
+
+            //Reset the animal values
+            animal.RemoveFromDropPoint();
+            animal.RemoveAnimal();
+            //animal.ResetValues();
+            //ResetButtons();
         }
 
         public void TakeButton()
@@ -29,7 +39,7 @@ namespace Assets.Scripts
                 return;
             }
             //Check if there is empty cage to put the animal inside
-            Cage availableCage = Cages.Instance.FindAvailableCage();
+            Cage availableCage = AnimalObjectPooling.SharedAnimalInstance.CageSystem.FindAvailableCage();//Cages.Instance.FindAvailableCage();
             if(availableCage == null)
             {
                 Debug.Log("no cage avaialable to take in the pet!");
@@ -37,7 +47,13 @@ namespace Assets.Scripts
             }
 
             //Taking in the pet
-            display.SetActive(false);
+            //display.SetActive(false);
+
+            //Removing take in button
+            takeInButton.SetActive(false);
+            //centering euthanize button
+            euthanizeButton.transform.localPosition = Vector3.zero;
+            RemoveFromDropPoint();
             PlacePetInCage(availableCage);
             animal.TakeIn(availableCage);
             animal.AnimalInf.ResetInfoText();
@@ -50,7 +66,19 @@ namespace Assets.Scripts
         private void PlacePetInCage(Cage cage)
         {
             animal.transform.position = cage.transform.position;
-            cage.AddAnimal(animal);
+            cage.AddAnimal(animal.gameObject);
+        }
+
+        private void RemoveFromDropPoint()
+        {
+            animal.CurrentCage.RemoveAnimal();
+            animal.RemoveFromDropPoint();
+        }
+
+        public void ResetButtons()
+        {
+            takeInButton.SetActive(true);
+            euthanizeButton.transform.localPosition = new Vector3(.7f, 0, 0);
         }
     }
 }
