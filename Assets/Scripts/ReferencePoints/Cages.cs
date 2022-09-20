@@ -10,6 +10,7 @@ namespace Assets.Scripts
     {
         [SerializeField] Cage[] cagesInShelter;
 
+        public Cage[] CagesInShelter { get => cagesInShelter; }
         //public static Cages Instance { get; private set; }
 
         private void Awake()
@@ -46,6 +47,7 @@ namespace Assets.Scripts
         }
 
         private bool IsCageAvailable(Cage cage) => !cage.Occupied;
+        public bool IsCageAvailable(int index) => !cagesInShelter[index].Occupied;
 
     }
 }

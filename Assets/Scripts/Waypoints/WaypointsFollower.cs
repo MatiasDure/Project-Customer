@@ -52,9 +52,9 @@ public class WaypointsFollower : MonoBehaviour
         }
     }
 
-    private bool ReachedWaypoint(float length) => length < 0.5f;
+    protected bool ReachedWaypoint(float length) => length < 0.5f;
 
-    private void UpdateWaypoint()
+    protected void UpdateWaypoint()
     {
         //rest if object is set to rest and given a specific waypoint to rest at
         if(waypointRest) stopCurrentIndex = currentIndex == restAtWaypoint;
@@ -69,7 +69,7 @@ public class WaypointsFollower : MonoBehaviour
         stopCurrentIndex = false;
     }
 
-    private void ResetWaypoint()
+    protected void ResetWaypoint()
     {
         reachedTheEnd = true;
         currentIndex = 0;
