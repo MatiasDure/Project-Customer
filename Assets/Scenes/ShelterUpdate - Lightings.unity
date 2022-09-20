@@ -247,7 +247,7 @@ Transform:
   - {fileID: 1146189024}
   - {fileID: 1144098256}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &40292843
 Animator:
@@ -3311,7 +3311,7 @@ Transform:
   - {fileID: 8507963723724016453}
   - {fileID: 2609862022056458373}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &465152691
 PrefabInstance:
@@ -3638,12 +3638,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6476529798019570804, guid: 0fe65fec31a96cc49a3146a03f035c48,
     type: 3}
   m_PrefabInstance: {fileID: 526338047}
-  m_PrefabAsset: {fileID: 0}
---- !u!223 &527355251 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 8507963723364959799, guid: 7c9d17c59e1508f45ab3694db66873ea,
-    type: 3}
-  m_PrefabInstance: {fileID: 8507963723724016452}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &540433159
 PrefabInstance:
@@ -7270,7 +7264,7 @@ Transform:
   - {fileID: 320282881}
   - {fileID: 1327100009}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1103413767
 PrefabInstance:
@@ -7755,6 +7749,7 @@ Transform:
   - {fileID: 705357239}
   - {fileID: 1681212008}
   - {fileID: 325902601}
+  - {fileID: 2011880779}
   m_Father: {fileID: 123024154}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13517,12 +13512,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1134811492}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0a9f7522203156840976c8efc8214bdb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0a9f7522203156840976c8efc8214bdb,
         type: 3}
@@ -13532,7 +13527,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0a9f7522203156840976c8efc8214bdb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.066
+      value: -0.356
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0a9f7522203156840976c8efc8214bdb,
         type: 3}
@@ -13547,7 +13542,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0a9f7522203156840976c8efc8214bdb,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0a9f7522203156840976c8efc8214bdb,
         type: 3}
@@ -13581,6 +13576,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a9f7522203156840976c8efc8214bdb, type: 3}
+--- !u!4 &2011880779 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0a9f7522203156840976c8efc8214bdb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2011880778}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2015498837
 GameObject:
   m_ObjectHideFlags: 0
@@ -14867,7 +14868,7 @@ PrefabInstance:
         type: 3}
       propertyPath: canvas
       value: 
-      objectReference: {fileID: 527355251}
+      objectReference: {fileID: 0}
     - target: {fileID: 2609862021854239227, guid: d4f222c1d9c9b614497d06aea98a497d,
         type: 3}
       propertyPath: amountToPool
@@ -14894,6 +14895,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 461351169}
     m_Modifications:
+    - target: {fileID: 5076789699926374550, guid: 7c9d17c59e1508f45ab3694db66873ea,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8507963723364959792, guid: 7c9d17c59e1508f45ab3694db66873ea,
         type: 3}
       propertyPath: m_Pivot.x
@@ -15008,7 +15014,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 7c9d17c59e1508f45ab3694db66873ea, type: 3}
 --- !u!224 &8507963723724016453 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8507963723364959792, guid: 7c9d17c59e1508f45ab3694db66873ea,
+  m_CorrespondingSourceObject: {fileID: 5076789699926374550, guid: 7c9d17c59e1508f45ab3694db66873ea,
     type: 3}
   m_PrefabInstance: {fileID: 8507963723724016452}
   m_PrefabAsset: {fileID: 0}
