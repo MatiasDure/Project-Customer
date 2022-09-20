@@ -112,8 +112,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodConsume: 0
   medicConsume: 0
-  _type: 0
+  type: 0
   _mat: {fileID: 2100000, guid: 4190a25459b8e944d90b063fe4c31d76, type: 2}
-  materials: []
-  render: {fileID: 0}
-  _offsetStartPosition: {x: 0, y: 0, z: 0}

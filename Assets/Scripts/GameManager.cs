@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,15 +12,14 @@ namespace Assets.Scripts
         private bool _isPaused;
         public bool IsPaused { get => _isPaused; }
 
+
         void Awake()
         {
             if (Manager == null)
             {
                 Manager = this;
-                DontDestroyOnLoad(gameObject);
                 SubscribeToEvent();
             }
-            else Destroy(gameObject);
 
         }
 
@@ -31,18 +31,24 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _isPaused = !_isPaused;
+                if (_isPaused) ButtonBehaviour.Instance.PauseGame();
+                else ButtonBehaviour.Instance.ResumeGame();
+            }
         }
 
-        void PauseGame(System.Object sender,bool pause) => _isPaused = pause;
+        void PauseGame() => _isPaused = false;
 
         void SubscribeToEvent()
         {
-            ButtonBehaviour.OnPaused += PauseGame;
+            ButtonBehaviour.OnResume += PauseGame;
         }
 
         void UnsubscribeFromEvent()
         {
-            ButtonBehaviour.OnPaused -= PauseGame;
+            ButtonBehaviour.OnResume -= PauseGame;
         }
 
         private void OnDestroy()

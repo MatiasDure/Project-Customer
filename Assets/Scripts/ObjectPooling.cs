@@ -5,16 +5,16 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public abstract class ObjectPooling : MonoBehaviour
+    public class ObjectPooling : MonoBehaviour
     {
         [SerializeField] protected GameObject objectToPool;
         [SerializeField] protected int amountToPool;
-        [SerializeField] protected Vector3 startingPosition;
+        //[SerializeField] protected Vector3 startingPosition;
 
         protected List<GameObject> pooledObjects;
 
         // Start is called before the first frame update
-        protected void Start()
+        protected virtual void Start()
         {
             pooledObjects = new List<GameObject>();
 
@@ -36,7 +36,7 @@ namespace Assets.Scripts
         protected virtual GameObject InitializeObjects()
         {
             GameObject temp = Instantiate(objectToPool);
-            temp.transform.position = startingPosition;
+            //temp.transform.position = startingPosition;
             temp.SetActive(false);
             pooledObjects.Add(temp);
             return temp;
