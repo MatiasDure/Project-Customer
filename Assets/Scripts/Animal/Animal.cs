@@ -32,7 +32,7 @@ namespace Assets.Scripts
         private float originalTimer;
         private int hp;
 
-        private Cage _currentCage;
+        public Cage _currentCage;
 
         public float Timer { get => timer; }
         public int Hp { get => hp; }
