@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 namespace Assets.Scripts
 {
@@ -25,6 +26,7 @@ namespace Assets.Scripts
 
         private void Update()
         {
+            if (GameManager.Manager.IsPaused) return;
             if((euthanizedPressed || takeInPressed) && !foundBed) TransferToVet();
             else if(foundBed)
             {
@@ -109,6 +111,7 @@ namespace Assets.Scripts
 
         public void EuthanizeButton()
         {
+            if (GameManager.Manager.IsPaused) return;
             euthanizedPressed = true;
             takeInButton.SetActive(false);
             euthanizeButton.SetActive(false);
@@ -116,6 +119,7 @@ namespace Assets.Scripts
 
         public void TakeButton()
         {
+            if (GameManager.Manager.IsPaused) return;
             takeInPressed = true;
             //Removing take in button
             takeInButton.SetActive(false);

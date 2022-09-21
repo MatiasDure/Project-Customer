@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -9,10 +11,15 @@ namespace Assets.Scripts
     {
         [SerializeField] private Material _mat;
         [SerializeField] private Animal.AnimalType _preference;
+        [SerializeField] private Image animalPreferenceDisplay;
+        [SerializeField] private Sprite[] animalPhotos;
         [SerializeField] private Renderer _render;
         [SerializeField] private GameObject display;
         [SerializeField] private NpcInfo npcInfo;
+        [SerializeField] private Timer timeBar; 
+        
         private float _waitingTime;
+        private Dictionary<Animal.AnimalType, Sprite> animalPicture;
 
         public float WaitingTime { get => _waitingTime; }
         public Animal.AnimalType Preference { get => _preference; }
@@ -29,8 +36,17 @@ namespace Assets.Scripts
         {
             if (_mat == null) _mat = GetComponent<Material>();
             if (_render == null) _render = GetComponent<Renderer>();
-            if (npcInfo == null) npcInfo = GetComponent<NpcInfo>();
+            if (npcInfo == null) npcInfo = GetComponentInChildren<NpcInfo>();
+            if (timeBar == null) timeBar = GetComponentInChildren<Timer>();
             if (display == null) Debug.LogWarning("You need to add the display to the NPC script!");
+            if(animalPreferenceDisplay == null) animalPreferenceDisplay = GetComponentInChildren<Image>();
+            if (animalPhotos.Length <= 1) Debug.LogWarning("Include the animal sprites in the NPC script");
+            else
+            {
+                animalPicture = new Dictionary<Animal.AnimalType, Sprite>();
+                animalPicture[Animal.AnimalType.Cat] = animalPhotos[0];
+                animalPicture[Animal.AnimalType.Dog] = animalPhotos[1];
+            }
         }
         // Start is called before the first frame update
         void Start()
@@ -56,6 +72,7 @@ namespace Assets.Scripts
                 return;
             }
             _waitingTime -= Time.deltaTime;
+            timeBar.UpdateTimerValue(_waitingTime);
         }
 
         public void HandPet() => _handedPet = true;
@@ -87,10 +104,12 @@ namespace Assets.Scripts
             _handedPet = false;
             _imOut = false;
             _render.material = _mat;
-            if(display != null) display.SetActive(false);
+            //if(display != null) display.SetActive(false);
             ResetWaitingTime();
+            timeBar.PassInMaxValue((int)_waitingTime);
             PickingRandomPreference();
-            npcInfo.ResetInfoText();
+            animalPreferenceDisplay.sprite = animalPicture[_preference];
+            //npcInfo.ResetInfoText();
         }
 
     }

@@ -18,6 +18,9 @@ namespace Assets.Scripts
         [SerializeField] private int[] rangeToEat;
         [SerializeField] private int healthPoints;
         [SerializeField] private AnimalCurb buttonsLayout;
+        [SerializeField] private Timer hpBar;
+        [SerializeField] private Timer foodTimer;
+        [SerializeField] private GameObject[] animalsMeshFilter;
 
         public AnimalType _type;
 
@@ -61,6 +64,8 @@ namespace Assets.Scripts
             if (animalInfo == null) animalInfo = gameObject.GetComponentInChildren<AnimalInfo>();
             if (buttonsLayout == null) buttonsLayout = gameObject.GetComponentInChildren<AnimalCurb>();
             if (curbDisplay == null) UnityEngine.Debug.LogWarning("You need to add the curbDisplay to the Animal Script!");
+            if (hpBar == null ) UnityEngine.Debug.LogWarning("You need to add the hp bar to the Animal Script!");
+            if (foodTimer == null) UnityEngine.Debug.LogWarning("You need to add the food timer bar to the Animal Script!");
         }
 
         // Start is called before the first frame update
@@ -118,7 +123,11 @@ namespace Assets.Scripts
             {
                 Resources.Resource.EatFood(_foodConsume);
             }
-            else hp--;
+            else
+            {
+                hp--;
+                hpBar.UpdateTimerValue(hp);
+            }
         }
 
         public void ResetValues()
@@ -126,16 +135,28 @@ namespace Assets.Scripts
             _selected = false;
             _taken = false;
             hp = healthPoints;
+            hpBar.PassInMaxValue(hp);
             _vaccinated = false;
             if (curbDisplay != null) curbDisplay.SetActive(true);
             //timer to consume food
             if (rangeToEat.Length > 1) timer = Random.Range(rangeToEat[0], rangeToEat[1] + 1);
             else timer = 20;
             originalTimer = timer;
+            foodTimer.PassInMaxValue((int)originalTimer);
             if (animalInfo != null)
             {
                 animalInfo.InfoDisplay.SetActive(false);
                 animalInfo.ResetInfoText();
+            }
+            if (_type == AnimalType.Cat)
+            {
+                animalsMeshFilter[0].SetActive(true);
+                animalsMeshFilter[1].SetActive(false);
+            }
+            else
+            {
+                animalsMeshFilter[1].SetActive(true);
+                animalsMeshFilter[0].SetActive(false);
             }
         }
 
@@ -143,7 +164,11 @@ namespace Assets.Scripts
 
         private bool TimeToConsume() => timer <= 0;
 
-        private void UpdateTimer() => timer -= Time.deltaTime;
+        private void UpdateTimer()
+        {
+            timer -= Time.deltaTime;
+            foodTimer.UpdateTimerValue(timer);
+        }
 
         private void ResetTimer() => timer = originalTimer;
     }

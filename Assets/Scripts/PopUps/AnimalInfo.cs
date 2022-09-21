@@ -29,21 +29,33 @@ namespace Assets.Scripts
 
         protected override void UpdateText()
         {
-            UpdateValues();
-            textField.text = string.Format("Animal: {0}\nFood: {1}\nNext meal in: {2}\nHealth: {3}",animalType,amountFood,timeToFeed,health);
+            //UpdateValues();
+            textField.text = string.Format("{0}", animalType);
         }
 
-        private void UpdateValues()
-        {
-            timeToFeed = (int)animal.Timer;
-            health = animal.Hp;
-        }
+        //private void UpdateValues()
+        //{
+        //    timeToFeed = (int)animal.Timer;
+        //    health = animal.Hp;
+
+        //}
 
         public void ResetInfoText()
         {
             amountFood = animal.FoodConsume;
             animalType = animal.Type;
             health = animal.Hp;
+        }
+
+        private void OnMouseEnter()
+        {
+            if (GameManager.Manager.IsPaused) return;
+            display.SetActive(true);
+        }
+
+        private void OnMouseExit()
+        {
+            display.SetActive(false);
         }
 
     }

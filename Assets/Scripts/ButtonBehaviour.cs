@@ -29,17 +29,20 @@ namespace Assets.Scripts
         public void LoadScene(string newScene)
         {
             SceneManager.LoadScene(newScene);
+            GameManager.Manager.ResetValues();
         }
 
         public void PauseGame()
         {
             CloseStore();
+            Time.timeScale = 0f;
             pausedUI.SetActive(true);
         }
 
         public void ResumeGame()
         {
             pausedUI.SetActive(false);
+            Time.timeScale = 1f;
             OnResume?.Invoke();
         }
 

@@ -11,6 +11,7 @@ public class WaypointsFollower : MonoBehaviour
     [SerializeField] protected float[] rangeOfSpeed;
 
     public GameObject[] waypoints;
+    protected GameObject target;
     protected float speed;
 
     protected int currentIndex;
@@ -54,7 +55,7 @@ public class WaypointsFollower : MonoBehaviour
 
     protected bool ReachedWaypoint(float length) => length < 0.5f;
 
-    protected void UpdateWaypoint()
+    protected virtual void UpdateWaypoint()
     {
         //rest if object is set to rest and given a specific waypoint to rest at
         if(waypointRest) stopCurrentIndex = currentIndex == restAtWaypoint;

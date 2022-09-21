@@ -12,8 +12,6 @@ namespace Assets.Scripts
         public Cages waypointArray;
         public Cage currentCheckPoint;
 
-
-
         protected override void Update()
         {
             base.Update();
@@ -34,7 +32,13 @@ namespace Assets.Scripts
                     currentCheckPoint.AddAnimal(gameObject);
                 }
 
-                Vector3 distance = waypointArray.CagesInShelter[currentIndex].transform.position - gameObject.transform.position;
+                target = waypointArray.CagesInShelter[currentIndex].gameObject;
+
+                //calculating direction towards target
+                Vector3 distance = target.transform.position - gameObject.transform.position;
+                
+                //looking at target
+                gameObject.transform.LookAt(target.transform);
 
                 //Check whether we reached the checkpoint
                 if (ReachedWaypoint(distance.magnitude))

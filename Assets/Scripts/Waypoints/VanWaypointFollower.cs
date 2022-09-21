@@ -21,6 +21,13 @@ public class VanWaypointFollower : WaypointsFollower
         if(reachedTheEnd) DropAnimal();
     }
 
+    protected override void MoveTowardsWayPoint()
+    {
+        target = waypoints[currentIndex];
+        gameObject.transform.LookAt(target.transform);
+        base.MoveTowardsWayPoint();
+    }
+
     private void DropAnimal()
     {
         //spawn animals on the curb

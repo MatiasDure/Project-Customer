@@ -10,16 +10,19 @@ namespace Assets.Scripts
         public static GameManager Manager { get; private set; }
 
         private bool _isPaused;
+        private int _animalSaved;
         public bool IsPaused { get => _isPaused; }
-
+        public int AnimalSaved { get => _animalSaved; }
 
         void Awake()
         {
             if (Manager == null)
             {
                 Manager = this;
+                DontDestroyOnLoad(gameObject);
                 SubscribeToEvent();
             }
+            else Destroy(gameObject);
 
         }
 
@@ -33,6 +36,7 @@ namespace Assets.Scripts
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                Debug.Log(_animalSaved);
                 _isPaused = !_isPaused;
                 if (_isPaused) ButtonBehaviour.Instance.PauseGame();
                 else ButtonBehaviour.Instance.ResumeGame();
@@ -55,5 +59,13 @@ namespace Assets.Scripts
         {
             UnsubscribeFromEvent();
         }
+
+        public void ResetValues()
+        {
+            _isPaused = false;
+            _animalSaved = 0;
+        }
+
+        public void SavedAnAnimal() => _animalSaved++;
     }
 }

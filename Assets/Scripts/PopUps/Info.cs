@@ -27,7 +27,8 @@ namespace Assets.Scripts
 
         private void OnMouseOver()
         {
-            if (Input.GetMouseButtonDown(0)) display.SetActive(!display.activeInHierarchy);
+            //toggle by clicking
+            //if (Input.GetMouseButtonDown(0)) display.SetActive(!display.activeInHierarchy);
         }
 
         protected virtual void UpdateText() { }

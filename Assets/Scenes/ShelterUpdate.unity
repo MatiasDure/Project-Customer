@@ -9432,7 +9432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685bbdba9001a0541bf7175a623fd20a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPool: {fileID: 4307081576097174738, guid: 16e1c07e3ac8ece469f48d2d61ecf157,
+  objectToPool: {fileID: 4307081576097174738, guid: 5874c9886930bfd4c89f9fdaec82af2a,
     type: 3}
   amountToPool: 6
   _cageSystem: {fileID: 2097061168}
@@ -9449,7 +9449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3615954c0b593645b3927916d1e8a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPool: {fileID: 8633509922415633072, guid: 979eba4f3df3f2d41a133c2980ea67c7,
+  objectToPool: {fileID: 8633509922415633072, guid: a9d42aff454293c408728861cacc0523,
     type: 3}
   amountToPool: 5
   waypointSystem: {fileID: 367051432}

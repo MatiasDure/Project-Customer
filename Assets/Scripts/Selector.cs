@@ -126,6 +126,7 @@ public class Selector : MonoBehaviour
                     npcSelected = null;
                     return;
                 }
+                GameManager.Manager.SavedAnAnimal();
                 npcScript.HandPet();
                 animalScript.RemoveAnimal();
                 animalScript.RemoveFromDropPoint();
