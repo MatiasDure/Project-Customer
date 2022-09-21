@@ -336,7 +336,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8633509922415633072}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -402,7 +402,7 @@ MonoBehaviour:
   animalPhotos:
   - {fileID: 21300000, guid: fde5fe903c4751046b74617883154e80, type: 3}
   - {fileID: 21300000, guid: 94932c208971e23439c79b9a752bf5f2, type: 3}
-  _render: {fileID: 8633509922415633077}
+  _render: {fileID: 8590799959851810183}
   display: {fileID: 1858319668793946096}
   npcInfo: {fileID: 1199284541857941803}
   timeBar: {fileID: 920219744461771879}
@@ -514,6 +514,12 @@ PrefabInstance:
 --- !u!4 &2190090240464206245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 735071825849030208, guid: 5d2c221626bf76344af4f106218580cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1465847556176752613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8590799959851810183 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7164975881073594978, guid: 5d2c221626bf76344af4f106218580cb,
     type: 3}
   m_PrefabInstance: {fileID: 1465847556176752613}
   m_PrefabAsset: {fileID: 0}
