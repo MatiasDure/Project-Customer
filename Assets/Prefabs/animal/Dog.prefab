@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fe0b5b707b5f02f4a837bebd3b140f1c, type: 2}
+  - {fileID: 2100000, guid: 2ae785df90790e2448f77b91ce462b3a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,9 +115,9 @@ MonoBehaviour:
   _medicConsume: 2
   curbDisplay: {fileID: 0}
   animalInfo: {fileID: 0}
-  _mat: {fileID: 2100000, guid: fe0b5b707b5f02f4a837bebd3b140f1c, type: 2}
+  _mat: {fileID: 2100000, guid: 2ae785df90790e2448f77b91ce462b3a, type: 2}
   _offsetStartPosition: {x: 0, y: 0, z: 0}
-  _render: {fileID: 0}
+  _render: {fileID: 6972985184831278704}
   rangeToEat: 
   healthPoints: 0
   buttonsLayout: {fileID: 0}
@@ -125,6 +125,7 @@ MonoBehaviour:
   _selected: 0
   _taken: 0
   _vaccinated: 0
+  _currentCage: {fileID: 0}
 --- !u!1001 &7920331804101709585
 PrefabInstance:
   m_ObjectHideFlags: 0

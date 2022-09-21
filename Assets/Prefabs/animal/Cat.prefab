@@ -115,9 +115,9 @@ MonoBehaviour:
   _medicConsume: 1
   curbDisplay: {fileID: 0}
   animalInfo: {fileID: 0}
-  _mat: {fileID: 2100000, guid: 4190a25459b8e944d90b063fe4c31d76, type: 2}
+  _mat: {fileID: 2100000, guid: 2ae785df90790e2448f77b91ce462b3a, type: 2}
   _offsetStartPosition: {x: 0, y: 0, z: 0}
-  _render: {fileID: 0}
+  _render: {fileID: 2938560693873838566}
   rangeToEat: 
   healthPoints: 0
   buttonsLayout: {fileID: 0}
@@ -125,6 +125,7 @@ MonoBehaviour:
   _selected: 0
   _taken: 0
   _vaccinated: 0
+  _currentCage: {fileID: 0}
 --- !u!1001 &8427764331049336571
 PrefabInstance:
   m_ObjectHideFlags: 0
