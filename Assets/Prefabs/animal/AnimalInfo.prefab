@@ -695,6 +695,7 @@ MonoBehaviour:
   display: {fileID: 1618980691}
   euthanizeButton: {fileID: 529577641}
   takeInButton: {fileID: 393617644}
+  timer: 2
 --- !u!114 &1618980697
 MonoBehaviour:
   m_ObjectHideFlags: 0
