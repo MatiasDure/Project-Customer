@@ -13,7 +13,9 @@ namespace Assets.Scripts
         private bool _isPaused;
         private int _animalSaved;
         private int _wrongAttempts;
+        private int _highScore;
 
+        public int HighScore { get => _highScore; }
         public int WrongAttempts { get => _wrongAttempts; }
         public bool IsPaused { get => _isPaused; }
         public int AnimalSaved { get => _animalSaved; }
@@ -27,13 +29,12 @@ namespace Assets.Scripts
                 SubscribeToEvent();
             }
             else Destroy(gameObject);
-
         }
 
         private void Start()
         {
-            _isPaused = false;
-            amountAttempts = amountAttempts == 0 ? 5 : amountAttempts;
+            ResetGameValues();
+            ResetAnimalSavedValue();
         }
 
         // Update is called once per frame
@@ -46,7 +47,11 @@ namespace Assets.Scripts
                 if (_isPaused) ButtonBehaviour.Instance.PauseGame();
                 else ButtonBehaviour.Instance.ResumeGame();
             }
-            if (_wrongAttempts >= amountAttempts) ButtonBehaviour.Instance.LoadScene("LosingScene");
+            if (_wrongAttempts >= amountAttempts)
+            {
+                if(_animalSaved > _highScore) _highScore = _animalSaved;
+                ButtonBehaviour.Instance.LoadScene("LosingScene");
+            }
         }
 
         void PauseGame() => _isPaused = false;
@@ -76,6 +81,7 @@ namespace Assets.Scripts
             _isPaused = false;
             amountAttempts = amountAttempts == 0 ? 5 : amountAttempts;
             _wrongAttempts = 0;
+            AudioManager.PlaySound(AudioManager.Sound.Soundtrack);
         }
 
         public void WrongChoice() => _wrongAttempts++;

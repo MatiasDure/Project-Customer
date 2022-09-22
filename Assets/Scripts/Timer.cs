@@ -17,11 +17,6 @@ namespace Assets.Scripts
             if (timerBar == null) Debug.LogWarning("Add fill area to the timer script!");
             SetTimerValues();
         }
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
 
         public void PassInMaxValue(int maxVal)
         {

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.UI;
 
 namespace Assets.Scripts
@@ -17,12 +16,18 @@ namespace Assets.Scripts
         [SerializeField] private Sprite[] animalDecisionSprites;
         [SerializeField] private Image vetIconImage;
         [SerializeField] private GameObject vetIconDisplay;
+        [SerializeField] private Animator animator;
 
 //        private Animator anim;
         private int emptyVaccine = 0;
         public Cage bed;
         private bool foundBed, takeInPressed, euthanizedPressed;
         float startingTime;
+
+        private void Awake()
+        {
+            if(animator == null) animator = GetComponent<Animator>();
+        }
 
         private void Start()
         {
@@ -40,6 +45,7 @@ namespace Assets.Scripts
 
                 if(timer <= 0)
                 {
+                    AnimationManager.Instance.TriggerAnimation(AnimationManager.Anim.Vet,false);
                     if (euthanizedPressed)
                     {
                         Euthanize();
@@ -107,10 +113,14 @@ namespace Assets.Scripts
             bed = AnimalObjectPooling.SharedAnimalInstance.VetBedSystem.FindAvailableCage();
             if (bed != null)
             {
-
                 //repositioning animal
                 animal.transform.position = bed.transform.position;
-
+                if (euthanizedPressed)
+                {
+                    if(animal.Type == Animal.AnimalType.Cat) AudioManager.PlaySound(AudioManager.Sound.catDeath);
+                    else AudioManager.PlaySound(AudioManager.Sound.dogDeath);
+                    AnimationManager.Instance.TriggerAnimation(AnimationManager.Anim.Vet,true);
+                }
                 //switching cages
                 if (animal.CurrentCage != null)
                 {
