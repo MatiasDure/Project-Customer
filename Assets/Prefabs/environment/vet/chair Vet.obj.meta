@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f3412e77a45e7cd4ba7e206c8f272b0a
+guid: 0b45845f410c16a49af4ad0bd436e7f6
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Computer2Mat
+      name: chair1Mat
     second: {fileID: 2100000, guid: 2ae785df90790e2448f77b91ce462b3a, type: 2}
   materials:
     materialImportMode: 2
@@ -52,7 +52,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
