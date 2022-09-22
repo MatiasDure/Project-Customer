@@ -14,6 +14,9 @@ public class CameraSwitch : MonoBehaviour
     int min, max;
 
     private CinemachineVirtualCamera activeCam;
+    private Dictionary<CinemachineVirtualCamera,CinemachineBasicMultiChannelPerlin> cinemachineChannels;
+    private float shakeTimer;
+    private bool shaking;
 
     public static CameraSwitch Instance { get; private set; }
 
@@ -24,6 +27,8 @@ public class CameraSwitch : MonoBehaviour
 
     void Start()
     {
+        shaking = false;
+        cinemachineChannels = new Dictionary<CinemachineVirtualCamera,CinemachineBasicMultiChannelPerlin>();
         currentIndex = indexCamToStart;
         SettingVirtualCam();
         min = 0;
@@ -56,5 +61,23 @@ public class CameraSwitch : MonoBehaviour
 
     public Transform GetCameraActive() => virtualCameras[currentIndex].transform;
 
+    public void ShakeCam(float intensity, float timer)
+    {
+        if (!cinemachineChannels.ContainsKey(activeCam)) cinemachineChannels.Add(activeCam, activeCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>());
+        cinemachineChannels[activeCam].m_AmplitudeGain = intensity;
+        shakeTimer = timer;
+        shaking = true;
+    }
+
+    private void Update()
+    {
+        if (!shaking) return;
+        shakeTimer -= Time.deltaTime;
+        if (shakeTimer <= 0)
+        {
+            cinemachineChannels[activeCam].m_AmplitudeGain = 0;
+            shaking = false;
+        }
+    }
 
 }

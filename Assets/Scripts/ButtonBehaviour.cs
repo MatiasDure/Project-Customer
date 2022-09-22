@@ -28,8 +28,9 @@ namespace Assets.Scripts
 
         public void LoadScene(string newScene)
         {
+            if(newScene != "LosingScene") GameManager.Manager.ResetAnimalSavedValue();
+            GameManager.Manager.ResetGameValues();
             SceneManager.LoadScene(newScene);
-            GameManager.Manager.ResetValues();
         }
 
         public void PauseGame()

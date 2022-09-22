@@ -14,6 +14,7 @@ public class Selector : MonoBehaviour
     private Dictionary<GameObject, Animal> animals;
     private Dictionary<GameObject, Npc> npcs;
 
+
     private void Start()
     {
         animalSelected = null;
@@ -34,10 +35,11 @@ public class Selector : MonoBehaviour
                     string gameObjectTag = hit.transform.tag;
                     if (gameObjectTag == "Animal") SelectAnimal(hit.transform.gameObject);
                     else if (gameObjectTag == "Npc") SelectNpc(hit.transform.gameObject);
+                    //To check match only once
+                    if(gameObjectTag == "Animal" || gameObjectTag == "Npc") CheckMatch();
                 }
             }
         }
-        CheckMatch();
     }
 
     //Select the animal by clicking
@@ -131,6 +133,12 @@ public class Selector : MonoBehaviour
                 animalScript.RemoveAnimal();
                 animalScript.RemoveFromDropPoint();
                 ResetAfterMatch();
+            }
+            else
+            {
+                //play wrong choice sound effect
+                GameManager.Manager.WrongChoice();
+                CameraSwitch.Instance.ShakeCam(5f, 0.2f);
             }
         }
     }
