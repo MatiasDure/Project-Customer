@@ -30,6 +30,7 @@ namespace Assets.Scripts
         {
             if(newScene != "LosingScene") GameManager.Manager.ResetAnimalSavedValue();
             GameManager.Manager.ResetGameValues();
+            Time.timeScale = 1.0f;
             SceneManager.LoadScene(newScene);
         }
 
