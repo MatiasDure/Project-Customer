@@ -101,6 +101,7 @@ namespace Assets.Scripts
 
         public void SpendMoney(int amountSpent)
         {
+            AudioManager.PlaySound(AudioManager.Sound.SpendMoney);
             DisplayFloatingTxt("" + -amountSpent,moneyText.transform.position + offset, Color.red);
             _moneyAmount -= amountSpent;
         }

@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 1618980692}
   - component: {fileID: 1618980696}
   - component: {fileID: 1618980697}
+  - component: {fileID: 131663900559403522}
   m_Layer: 5
   m_Name: TakePetDecision
   m_TagString: Untagged
@@ -423,12 +424,13 @@ MonoBehaviour:
   display: {fileID: 1618980691}
   euthanizeButton: {fileID: 529577641}
   takeInButton: {fileID: 393617644}
-  timer: 4
+  timer: 2
   animalDecisionSprites:
   - {fileID: 21300000, guid: a626dd62c06c8ca48bde7a47a974ea99, type: 3}
   - {fileID: 21300000, guid: 0c7ad53a4c3bba34f82a4d5a3e6669b1, type: 3}
   vetIconImage: {fileID: 2570612669681743783}
   vetIconDisplay: {fileID: 1298578807727064917}
+  animator: {fileID: 131663900559403522}
   bed: {fileID: 0}
 --- !u!114 &1618980697
 MonoBehaviour:
@@ -442,6 +444,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4eae7fb78595ab41951808b6de173bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &131663900559403522
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618980691}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 549078f92ea320d42afd7a10de39deaa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1231745006269492244
 GameObject:
   m_ObjectHideFlags: 0
