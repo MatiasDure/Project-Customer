@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/ShelterUpdate Copy.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
     path: Assets/Scenes/MainMenuScene.unity
     guid: 1e9798beb359a024b8eec02b13285c44
+  - enabled: 1
+    path: Assets/Scenes/ShelterUpdate Copy.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
     path: Assets/Scenes/CreditScene.unity
     guid: 211ecee5ba918344ca7d37ee43a91065
