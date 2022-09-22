@@ -17,6 +17,8 @@ public class Selector : MonoBehaviour
 
     private void Start()
     {
+        animals = new Dictionary<GameObject, Animal>();
+        npcs = new Dictionary<GameObject, Npc>();
         animalSelected = null;
         npcSelected = null;
     }
@@ -118,8 +120,13 @@ public class Selector : MonoBehaviour
         {
             if (npcAnimalPreference == animalTypeSelected)
             {
-                Npc npcScript = RetrieveNpcScript(npcSelected);
-                Animal animalScript = RetrieveAnimalScript(animalSelected);
+                if (!npcs.ContainsKey(npcSelected)) npcs.Add(npcSelected, RetrieveNpcScript(npcSelected));
+                if (!animals.ContainsKey(animalSelected)) animals.Add(animalSelected, RetrieveAnimalScript(animalSelected));
+
+                //Npc npcScript = RetrieveNpcScript(npcSelected);
+                //Animal animalScript = RetrieveAnimalScript(animalSelected);
+                Npc npcScript = npcs[npcSelected];
+                Animal animalScript = animals[animalSelected];
 
                 //Checking whether the npc is already leaving the animal shelter
                 if (npcScript.HandedPet || npcScript.ImOut)
