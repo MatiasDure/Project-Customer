@@ -57,7 +57,12 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            if (!_imOut && !TimeLeft()) _imOut = true;
+            if (!_imOut && !TimeLeft())
+            {
+                _imOut = true;
+                GameManager.Manager.WrongChoice();
+                //add angry sound effect
+            }
 
             else UpdateTimer();
         }

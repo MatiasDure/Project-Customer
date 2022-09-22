@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -13,6 +14,9 @@ namespace Assets.Scripts
         [SerializeField] GameObject euthanizeButton;
         [SerializeField] GameObject takeInButton;
         [SerializeField] float timer;
+        [SerializeField] private Sprite[] animalDecisionSprites;
+        [SerializeField] private Image vetIconImage;
+        [SerializeField] private GameObject vetIconDisplay;
 
 //        private Animator anim;
         private int emptyVaccine = 0;
@@ -23,7 +27,7 @@ namespace Assets.Scripts
         private void Start()
         {
             startingTime = timer;
- //           anim = GetComponent<Animator>();
+            vetIconDisplay.SetActive(false);
         }
 
         private void Update()
@@ -33,6 +37,7 @@ namespace Assets.Scripts
             else if(foundBed)
             {
                 UpdateVetTimer();
+
                 if(timer <= 0)
                 {
                     if (euthanizedPressed)
@@ -45,6 +50,12 @@ namespace Assets.Scripts
                         PseudoResetValues();
                         TakeIn();
                     }
+                }
+                else if(!vetIconDisplay.activeInHierarchy)
+                {
+                    vetIconDisplay.SetActive(true);
+                    if (euthanizedPressed) vetIconImage.sprite = animalDecisionSprites[1];
+                    else vetIconImage.sprite = animalDecisionSprites[0];
                 }
             }
         }
@@ -85,7 +96,6 @@ namespace Assets.Scripts
 //            anim.SetTrigger("Red Vignette");
 //            anim.SetTrigger("VetEvent");
         }
-
         private void UpdateVetTimer()
         {
             timer -= Time.deltaTime;
@@ -153,6 +163,7 @@ namespace Assets.Scripts
 
         private void PseudoResetValues()
         {
+            vetIconDisplay.SetActive(false);
             euthanizedPressed = false;
             takeInPressed = false;
             timer = startingTime;
