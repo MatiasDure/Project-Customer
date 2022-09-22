@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c974c1df485f6ea48a20849be293626f
+guid: 604a74f5c4bfe2f4abbb4baf6f76c497
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: defaultMat
+      name: door_colored_door_colored_door_colored_door_colored_pCylinder1Mat
     second: {fileID: 2100000, guid: 2ae785df90790e2448f77b91ce462b3a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: initialShadingGroup_pCube9Mat
-    second: {fileID: 2100000, guid: 44c3ba15cb76cc149b2ed28f60259543, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

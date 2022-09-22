@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c974c1df485f6ea48a20849be293626f
+guid: 2a09e004503860840b4adc2c2263f420
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: defaultMat
-    second: {fileID: 2100000, guid: 2ae785df90790e2448f77b91ce462b3a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: initialShadingGroup_pCube9Mat
-    second: {fileID: 2100000, guid: 44c3ba15cb76cc149b2ed28f60259543, type: 2}
+      name: pCube2Mat
+    second: {fileID: 2100000, guid: f83da9c0ff882304f97ffcb447d40407, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
