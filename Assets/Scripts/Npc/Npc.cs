@@ -62,16 +62,17 @@ namespace Assets.Scripts
                 _imOut = true;
                 GameManager.Manager.WrongChoice();
                 //add angry sound effect
+                AudioManager.PlaySound(AudioManager.Sound.AngryNpc);
             }
 
-            else UpdateTimer();
+            else if(!HandedPet) UpdateTimer();
         }
 
         private bool TimeLeft() => _waitingTime > 0;
 
         private void UpdateTimer()
         {
-            if(_waitingTime <= 0 || _handedPet)
+            if(_waitingTime <= 0)
             {
                 _waitingTime = 0;
                 return;

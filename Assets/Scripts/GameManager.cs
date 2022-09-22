@@ -32,8 +32,8 @@ namespace Assets.Scripts
 
         private void Start()
         {
-            _isPaused = false;
-            amountAttempts = amountAttempts == 0 ? 5 : amountAttempts;
+            ResetGameValues();
+            ResetAnimalSavedValue();
         }
 
         // Update is called once per frame
@@ -76,6 +76,7 @@ namespace Assets.Scripts
             _isPaused = false;
             amountAttempts = amountAttempts == 0 ? 5 : amountAttempts;
             _wrongAttempts = 0;
+            AudioManager.PlaySound(AudioManager.Sound.Soundtrack);
         }
 
         public void WrongChoice() => _wrongAttempts++;

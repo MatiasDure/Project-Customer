@@ -63,7 +63,9 @@ public class VanWaypointFollower : WaypointsFollower
 
         //Setting the animal's type, position, and activating it
         animalPickerScript.ChooseAnimalType();
-        animal.transform.position = dropPoint.transform.position;//gameObject.transform.position + animalScript.OffsetStartPosition + new Vector3(0,0,UnityEngine.Random.Range(-3,4)); 
+        animal.transform.position = dropPoint.transform.position;
+        if (animalScript.Type == Animal.AnimalType.Cat) AudioManager.PlaySound(AudioManager.Sound.catMeow);
+        else AudioManager.PlaySound(AudioManager.Sound.dogBark);
         animalScript.PlaceInCage(dropPoint);
         dropPoint.AddAnimal(animal);
         animal.SetActive(true);

@@ -11,6 +11,7 @@ namespace Assets.Scripts
         public Npc npc;
         public Cages waypointArray;
         public Cage currentCheckPoint;
+        private bool soundPlayed;
 
         protected override void Update()
         {
@@ -50,6 +51,12 @@ namespace Assets.Scripts
                         return;
                     }
 
+                    if(currentIndex == restAtWaypoint && !soundPlayed && !npc.HandedPet)
+                    {
+                        AudioManager.PlaySound(AudioManager.Sound.AskingNpc);
+                        soundPlayed = true;
+                    }
+
                     //if we are not leaving the building
                     //and no animal has been handed to the npc
                     //and they are in front of the desk
@@ -83,9 +90,11 @@ namespace Assets.Scripts
             {
                 int randomDonation = UnityEngine.Random.Range(30,61);
                 Resources.Resource.AddMoney(randomDonation);
+                AudioManager.PlaySound(AudioManager.Sound.DonationMoney);
             }
             reachedTheEnd = false;
             leaveBuilding = false;
+            soundPlayed = false;
             
             //Picking a new Preference pet
             npc.ResetNpc();
