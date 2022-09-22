@@ -13,6 +13,7 @@ namespace Assets.Scripts
         [SerializeField] private GameObject pausedUI;
         [SerializeField] private GameObject storeCloseUI;
         [SerializeField] private GameObject storeOpenUI;
+       
 
         public static event Action OnResume;
         public static event Action OnOpenStore;
@@ -61,5 +62,8 @@ namespace Assets.Scripts
             storeCloseUI.SetActive(true);
             storeOpenUI.SetActive(false);
         }
+
+      
+
     }
 }

@@ -16,6 +16,7 @@ namespace Assets.Scripts
         void Awake()
         {
             SharedAnimalInstance = this;
+            
         }
 
         protected override void Start()

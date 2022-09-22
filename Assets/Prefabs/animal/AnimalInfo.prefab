@@ -696,6 +696,9 @@ MonoBehaviour:
   euthanizeButton: {fileID: 529577641}
   takeInButton: {fileID: 393617644}
   timer: 2
+  animalDecisionSprites: []
+  vetIconImage: {fileID: 0}
+  vetIconDisplay: {fileID: 0}
   bed: {fileID: 0}
 --- !u!114 &1618980697
 MonoBehaviour:
