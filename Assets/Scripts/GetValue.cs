@@ -18,7 +18,7 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            textHolder.text = "Animals Saved: " + GameManager.Manager.AnimalSaved;
+            textHolder.text = string.Format("Animals Saved: {0}\n\nHigh Score: {1}",GameManager.Manager.AnimalSaved, GameManager.Manager.HighScore);
         }
 
     }
