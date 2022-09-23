@@ -18,6 +18,7 @@ namespace Assets.Scripts
         [SerializeField] private GameObject vetIconDisplay;
         [SerializeField] private Animator animator;
 
+//        private Animator anim;
         private int emptyVaccine = 0;
         public Cage bed;
         private bool foundBed, takeInPressed, euthanizedPressed;
@@ -98,6 +99,8 @@ namespace Assets.Scripts
         {
             //has to be the animal because it is the component of the main parent
             animal.gameObject.SetActive(false);
+//            anim.SetTrigger("Red Vignette");
+//            anim.SetTrigger("VetEvent");
         }
         private void UpdateVetTimer()
         {
