@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ShelterUpdate.unity
+    path: Assets/Scenes/ShelterUpdate Copy.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/MainMenuScene.unity
@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LosingScene.unity
     guid: 54202556d8f5ab74d873abbd170c2a3c
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene2.unity
+    guid: e6b7c0188a03a1e41a5cd66f8e15327a
+  - enabled: 1
+    path: Assets/Scenes/ShelterUpdate.unity
+    guid: a121586208f57324a8c0370a7109d315
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene3.unity
+    guid: c158ba5399465a742a0938c020e809fe
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene4.unity
+    guid: ec682fe95e46e814b992b720479f83de
   m_configObjects: {}

@@ -49,6 +49,7 @@ namespace Assets.Scripts
 
         public void PauseGame()
         {
+            if (pausedUI == null) return;
             CloseStore();
             Time.timeScale = 0f;
             pausedUI.SetActive(true);
@@ -64,6 +65,7 @@ namespace Assets.Scripts
         public void OpenStore()
         {
             if (GameManager.Manager.IsPaused) return;
+            if (storeCloseUI == null || storeOpenUI == null) return;
             OnOpenStore?.Invoke();
             storeOpenUI.SetActive(true);
             storeCloseUI.SetActive(false);
@@ -71,6 +73,7 @@ namespace Assets.Scripts
 
         public void CloseStore()
         {
+            if (storeCloseUI == null || storeOpenUI == null) return;
             storeCloseUI.SetActive(true);
             storeOpenUI.SetActive(false);
         }
