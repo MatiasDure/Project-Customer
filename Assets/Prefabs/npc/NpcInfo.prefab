@@ -702,9 +702,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mat: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   _preference: 0
+  animalPreferenceDisplay: {fileID: 0}
+  animalPhotos: []
   _render: {fileID: 8633509922415633077}
   display: {fileID: 1858319668793946096}
   npcInfo: {fileID: 1858319669389098981}
+  timeBar: {fileID: 0}
 --- !u!114 &4664264998995759900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +811,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7164975881073594978, guid: 5d2c221626bf76344af4f106218580cb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0edf24def4dd0214dbfb41dba8380bb0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d2c221626bf76344af4f106218580cb, type: 3}
 --- !u!4 &2190090240464206245 stripped

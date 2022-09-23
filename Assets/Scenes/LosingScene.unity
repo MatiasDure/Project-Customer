@@ -689,7 +689,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Animal Saved
+  m_text: 'Animal Saved:
+
+    High Score:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be3701b7a76d8ad44b7db61ce9487a3b, type: 2}
   m_sharedMaterial: {fileID: 6438041715163513271, guid: be3701b7a76d8ad44b7db61ce9487a3b,

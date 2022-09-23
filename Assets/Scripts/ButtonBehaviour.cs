@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using Unity.VisualScripting;
 
 namespace Assets.Scripts
 {
@@ -14,9 +15,11 @@ namespace Assets.Scripts
         [SerializeField] private GameObject storeCloseUI;
         [SerializeField] private GameObject storeOpenUI;
        
-
         public static event Action OnResume;
         public static event Action OnOpenStore;
+        public static event Action OnMainMenuScene;
+        public static event Action OnGameScene;
+
 
         public static ButtonBehaviour Instance { get; private set; }
 
@@ -29,6 +32,15 @@ namespace Assets.Scripts
 
         public void LoadScene(string newScene)
         {
+            switch(newScene)
+            {
+                case "MainMenuScene":
+                    OnMainMenuScene?.Invoke();
+                    break;
+                case "ShelterUpdate":
+                    OnGameScene?.Invoke();
+                    break;
+            }
             if(newScene != "LosingScene") GameManager.Manager.ResetAnimalSavedValue();
             GameManager.Manager.ResetGameValues();
             Time.timeScale = 1.0f;
