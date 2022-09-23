@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -14,6 +15,8 @@ namespace Assets.Scripts
         private int _animalSaved;
         private int _wrongAttempts;
         private int _highScore;
+        private bool _playSoundtrack;
+        private Scene currentScene;
 
         public int HighScore { get => _highScore; }
         public int WrongAttempts { get => _wrongAttempts; }
@@ -28,7 +31,10 @@ namespace Assets.Scripts
                 DontDestroyOnLoad(gameObject);
                 SubscribeToEvent();
             }
-            else Destroy(gameObject);
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         private void Start()
@@ -51,6 +57,16 @@ namespace Assets.Scripts
             {
                 if(_animalSaved > _highScore) _highScore = _animalSaved;
                 ButtonBehaviour.Instance.LoadScene("LosingScene");
+            }
+            Debug.Log(_playSoundtrack);
+        }
+
+        private void LateUpdate()
+        {
+            currentScene = SceneManager.GetActiveScene();
+            if (currentScene.name != "MainMenuScene" && !AudioManager.IsPlaying(AudioManager.Sound.Soundtrack))
+            {
+                AudioManager.PlaySound(AudioManager.Sound.Soundtrack);
             }
         }
 
@@ -79,9 +95,9 @@ namespace Assets.Scripts
         public void ResetGameValues()
         {
             _isPaused = false;
+            _playSoundtrack = false;
             amountAttempts = amountAttempts == 0 ? 5 : amountAttempts;
             _wrongAttempts = 0;
-            AudioManager.PlaySound(AudioManager.Sound.Soundtrack);
         }
 
         public void WrongChoice() => _wrongAttempts++;
