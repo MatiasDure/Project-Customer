@@ -25,7 +25,8 @@ namespace Assets.Scripts
             catMeow,
             Soundtrack,
             AskingNpc,
-            AngryNpc
+            AngryNpc,
+            MainMenuSoundtrack
         }
 
 
