@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5a4dc37556d1dd143b37a809b450d645
+guid: 05bc03d856a6c484ab8ca7ab723ec777
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: tablePlainMat
+      name: pCube21Mat
     second: {fileID: 2100000, guid: 2ae785df90790e2448f77b91ce462b3a, type: 2}
   materials:
     materialImportMode: 2
@@ -52,7 +52,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
